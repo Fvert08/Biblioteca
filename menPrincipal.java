@@ -25,6 +25,11 @@ public class menPrincipal extends JFrame {
         buttonRegistrar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
         panel.add(buttonRegistrar);
         panel.add(Box.createRigidArea(new Dimension(0, 10))); // Añadir un espacio entre los botones
+        //Boton Buscar
+        JButton buttonBuscar = new JButton("Buscar");
+        buttonBuscar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
+        panel.add(buttonBuscar);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
         // Añadir el panel al marco
         add(panel);
         
