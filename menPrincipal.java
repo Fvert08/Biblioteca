@@ -5,7 +5,7 @@ public class menPrincipal extends JFrame {
     public menPrincipal() {
         // Configurar el marco
         setTitle("Menu");
-        setSize(400, 300);
+        setSize(300, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -30,13 +30,27 @@ public class menPrincipal extends JFrame {
         buttonBuscar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
         panel.add(buttonBuscar);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        //Boton Modificar
+        JButton buttonModificar = new JButton("Modificar / Habilitar");
+        buttonModificar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
+        panel.add(buttonModificar);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        //Boton Eliminar
+        JButton buttonEliminar = new JButton("Eliminar / Deshabilitar");
+        buttonEliminar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
+        panel.add(buttonEliminar);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        //Boton Salir
+        JButton buttonSalir = new JButton("Salir");
+        buttonSalir.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
+        panel.add(buttonSalir);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
         // Añadir el panel al marco
         add(panel);
-        
+
         // Hacer visible la ventana
         setVisible(true);
     }
-
     public static void main(String[] args) {
         // Ejecutar la aplicación en el hilo de despacho de eventos
         SwingUtilities.invokeLater(() -> new menPrincipal());
