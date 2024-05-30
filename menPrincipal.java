@@ -1,55 +1,74 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class menPrincipal extends JFrame {
     public menPrincipal() {
-        // Configurar el marco
-        setTitle("Menu");
-        setSize(300, 250);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        
-        // Crear un panel con BoxLayout para disponer los botones verticalmente
+        JFrame frame = new JFrame("Ejemplo Multiples Botones");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 300);
+        frame.setLocationRelativeTo(null);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        // Crear label menú sobre los botones
-        JLabel label = new JLabel("Menú");
-        Font fuente = new Font("Arial", Font.PLAIN, 20);
-        label.setFont(fuente);
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(label);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        // Crear y añadir los botones al panel
-            //Boton Registrar
+        // Crea label cabecera Menú
+        JLabel labelMenú =  new JLabel("Menú");
+        // Crear los botones
         JButton buttonRegistrar = new JButton("Registrar");
-        buttonRegistrar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
-        panel.add(buttonRegistrar);
-        panel.add(Box.createRigidArea(new Dimension(0, 10))); // Añadir un espacio entre los botones
-        //Boton Buscar
         JButton buttonBuscar = new JButton("Buscar");
-        buttonBuscar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
+        JButton buttonModificarHabilitar = new JButton("Modificar / Habilitar");
+        JButton buttonEliminarDeshabilitar = new JButton("Eliminar / Deshabilitar");
+        JButton buttonSalir = new JButton("Salir");
+        //Añadir label
+        panel.add(labelMenú);
+        panel.add (Box.createRigidArea(new Dimension(0, 10)));
+        // Añadir los botones al panel
+        panel.add(buttonRegistrar);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(buttonBuscar);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        //Boton Modificar
-        JButton buttonModificar = new JButton("Modificar / Habilitar");
-        buttonModificar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
-        panel.add(buttonModificar);
+        panel.add(buttonModificarHabilitar);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        //Boton Eliminar
-        JButton buttonEliminar = new JButton("Eliminar / Deshabilitar");
-        buttonEliminar.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
-        panel.add(buttonEliminar);
+        panel.add(buttonEliminarDeshabilitar);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        //Boton Salir
-        JButton buttonSalir = new JButton("Salir");
-        buttonSalir.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar 
         panel.add(buttonSalir);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        // Añadir el panel al marco
-        add(panel);
+        // Centrar los botones y label
+        buttonRegistrar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonBuscar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonModificarHabilitar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonEliminarDeshabilitar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelMenú.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Centrar label y dar formato
+        Font fuenteMenu = new Font ("Arial", Font.PLAIN,20);
+        labelMenú.setFont(fuenteMenu);
+        // Crear un ActionListener para todos los botones
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object source = e.getSource();
+                if (source instanceof JButton) {
+                    JButton button = (JButton) source;
+                    String buttonText = button.getText();
+                    if ("Salir".equals(buttonText)) {
+                        System.exit(0); // Cerrar el programa
+                    } else {
+                        System.out.println(buttonText);
+                    }
+                }
+            }
+        };
 
-        // Hacer visible la ventana
-        setVisible(true);
+        // Añadir el ActionListener a todos los botones
+        buttonRegistrar.addActionListener(listener);
+        buttonBuscar.addActionListener(listener);
+        buttonModificarHabilitar.addActionListener(listener);
+        buttonEliminarDeshabilitar.addActionListener(listener);
+        buttonSalir.addActionListener(listener);
+
+        frame.getContentPane().add(panel);
+        frame.setSize(300, 300);
+        frame.setVisible(true);
     }
     public static void main(String[] args) {
         // Ejecutar la aplicación en el hilo de despacho de eventos
