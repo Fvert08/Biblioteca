@@ -8,7 +8,7 @@ public class menuPrincipal extends JFrame {
 
     public menuPrincipal() {
         // Configurar el JFrame principal
-        setTitle("Ejemplo Multiples Botones");
+        setTitle("Menu");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 260);
         setLocationRelativeTo(null);
@@ -24,6 +24,7 @@ public class menuPrincipal extends JFrame {
     }
 
     private void mostrarMenuPrincipal() {
+        setTitle("Menu principal");
         // Limpiar el panel y restablecer el layout original
         panel.removeAll();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -109,6 +110,7 @@ public class menuPrincipal extends JFrame {
     }
 
     public void mostrarPantallaRegistro() {
+        setTitle("Menu registros");
         // Limpiar el panel y establecer un nuevo layout
         panel.removeAll();
         panel.setLayout(new GridBagLayout());
@@ -210,11 +212,26 @@ public class menuPrincipal extends JFrame {
                         case "Articulo":
                             System.out.println("Registrar articulo");
                             break;
+                        case "Copia":
+                            System.out.println("Registrar copia");
+                            break;
+                        case "Prestamo":
+                            System.out.println("Registrar prestamo");
+                            break;
+                        case "Multa":
+                            System.out.println("Registrar multa");
+                            break;
+                        case "Autor":
+                            System.out.println("Registrar autor");
+                            break;
+                        case "Lector":
+                            System.out.println("Registrar lector");
+                            break;
+                        case "Categoria":
+                            System.out.println("Registrar cateforia");
+                            break;
                         case "Volver":
                             mostrarMenuPrincipal();
-                            break;
-                        case "Salir":
-                            System.exit(0);
                             break;
                         default:
                             System.out.println("Botón no reconocido");
