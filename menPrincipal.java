@@ -96,16 +96,90 @@ public class menPrincipal extends JFrame {
     private void mostrarPantallaRegistro() {
         // Limpiar el panel
         panel.removeAll();
+        setTitle("Ejemplo de Botones y Labels Centrados");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 400);
+        setLocationRelativeTo(null);
+        setLayout(new GridBagLayout());
 
-        // Crear y añadir el nuevo label al panel
-        JLabel label = new JLabel("Pantalla registros", SwingConstants.CENTER);
-        label.setFont(new Font("Arial", Font.PLAIN, 20));
-        panel.setLayout(new BorderLayout()); // Cambiar layout para centrar el label
-        panel.add(label, BorderLayout.CENTER);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.NONE; // No llenar horizontalmente, permitir centrado
+        gbc.insets = new Insets(5, 5, 5, 5); // Margen entre componentes
+        gbc.anchor = GridBagConstraints.CENTER; // Centrar los componentes
 
-        // Refrescar el panel para mostrar los cambios
-        panel.revalidate();
-        panel.repaint();
+        // Título
+        JLabel labelTitulo = new JLabel("Registrar", SwingConstants.CENTER);
+        labelTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        add(labelTitulo, gbc);
+
+        // Primera etiqueta y botones
+        JLabel label1 = new JLabel("Primera Etiqueta", SwingConstants.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        add(label1, gbc);
+
+        JButton button1_1 = new JButton("Botón 1");
+        JButton button1_2 = new JButton("Botón 2");
+        JButton button1_3 = new JButton("Botón 3");
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        add(button1_1, gbc);
+        gbc.gridx = 1;
+        add(button1_2, gbc);
+        gbc.gridx = 2;
+        add(button1_3, gbc);
+
+        // Segunda etiqueta y botones
+        JLabel label2 = new JLabel("Segunda Etiqueta", SwingConstants.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 3;
+        add(label2, gbc);
+
+        JButton button2_1 = new JButton("Botón 1");
+        JButton button2_2 = new JButton("Botón 2");
+        JButton button2_3 = new JButton("Botón 3");
+        gbc.gridy = 4;
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        add(button2_1, gbc);
+        gbc.gridx = 1;
+        add(button2_2, gbc);
+        gbc.gridx = 2;
+        add(button2_3, gbc);
+
+        // Tercera etiqueta y botones
+        JLabel label3 = new JLabel("Tercera Etiqueta", SwingConstants.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 3;
+        add(label3, gbc);
+
+        JButton button3_1 = new JButton("Botón 1");
+        JButton button3_2 = new JButton("Botón 2");
+        JButton button3_3 = new JButton("Botón 3");
+        gbc.gridy = 6;
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        add(button3_1, gbc);
+        gbc.gridx = 1;
+        add(button3_2, gbc);
+        gbc.gridx = 2;
+        add(button3_3, gbc);
+
+        // Botón final
+        JButton buttonFinal = new JButton("Botón Final");
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 3;
+        add(buttonFinal, gbc);
+
+        setVisible(true);
     }
 
     public static void main(String[] args) {
