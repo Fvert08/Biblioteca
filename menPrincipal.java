@@ -96,7 +96,7 @@ public class menPrincipal extends JFrame {
     private void mostrarPantallaRegistro() {
         // Limpiar el panel
         panel.removeAll();
-        setTitle("Ejemplo de Botones y Labels Centrados");
+        setTitle("Menu registros");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 400);
         setLocationRelativeTo(null);
@@ -116,15 +116,15 @@ public class menPrincipal extends JFrame {
         add(labelTitulo, gbc);
 
         // Primera etiqueta y botones
-        JLabel label1 = new JLabel("Primera Etiqueta", SwingConstants.CENTER);
+        JLabel label1 = new JLabel("Escritos", SwingConstants.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 3;
         add(label1, gbc);
 
-        JButton button1_1 = new JButton("Botón 1");
-        JButton button1_2 = new JButton("Botón 2");
-        JButton button1_3 = new JButton("Botón 3");
+        JButton button1_1 = new JButton("Libros");
+        JButton button1_2 = new JButton("Tesis");
+        JButton button1_3 = new JButton("Articulos");
         gbc.gridy = 2;
         gbc.gridwidth = 1;
         gbc.gridx = 0;
@@ -135,15 +135,15 @@ public class menPrincipal extends JFrame {
         add(button1_3, gbc);
 
         // Segunda etiqueta y botones
-        JLabel label2 = new JLabel("Segunda Etiqueta", SwingConstants.CENTER);
+        JLabel label2 = new JLabel("Copias", SwingConstants.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 3;
         add(label2, gbc);
 
-        JButton button2_1 = new JButton("Botón 1");
-        JButton button2_2 = new JButton("Botón 2");
-        JButton button2_3 = new JButton("Botón 3");
+        JButton button2_1 = new JButton("Copia");
+        JButton button2_2 = new JButton("Prestamo");
+        JButton button2_3 = new JButton("Multa");
         gbc.gridy = 4;
         gbc.gridwidth = 1;
         gbc.gridx = 0;
@@ -154,15 +154,15 @@ public class menPrincipal extends JFrame {
         add(button2_3, gbc);
 
         // Tercera etiqueta y botones
-        JLabel label3 = new JLabel("Tercera Etiqueta", SwingConstants.CENTER);
+        JLabel label3 = new JLabel("Datos", SwingConstants.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridwidth = 3;
         add(label3, gbc);
 
-        JButton button3_1 = new JButton("Botón 1");
-        JButton button3_2 = new JButton("Botón 2");
-        JButton button3_3 = new JButton("Botón 3");
+        JButton button3_1 = new JButton("Autor");
+        JButton button3_2 = new JButton("Lector");
+        JButton button3_3 = new JButton("Categoria");
         gbc.gridy = 6;
         gbc.gridwidth = 1;
         gbc.gridx = 0;
@@ -173,7 +173,7 @@ public class menPrincipal extends JFrame {
         add(button3_3, gbc);
 
         // Botón final
-        JButton buttonFinal = new JButton("Botón Final");
+        JButton buttonFinal = new JButton("Volver");
         gbc.gridx = 0;
         gbc.gridy = 7;
         gbc.gridwidth = 3;
