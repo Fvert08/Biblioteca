@@ -305,7 +305,7 @@ public class menuPrincipal extends JFrame {
         JTextField textEditorial = new JTextField(20);
 
         JLabel labelAutor = new JLabel("Autor:");
-        JTextField textAutor = new JTextField(20);
+        JComboBox<String> comboAutor  = new JComboBox<>(new String[] {"Autor 1", "Autor 2", "Autor 3"});
 
         JLabel labelEstado = new JLabel("Estado:");
         JTextField textEstado = new JTextField(20);
@@ -375,7 +375,7 @@ public class menuPrincipal extends JFrame {
 
         gbc.gridx = 1;
         gbc.gridy = 7;
-        panel.add(textAutor, gbc);
+        panel.add(comboAutor, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 8;
