@@ -310,7 +310,7 @@ public class menuPrincipal extends JFrame {
         JComboBox<String> comboAutor  = new JComboBox<>(new String[] {"Autor 1", "Autor 2", "Autor 3"});
 
         JLabel labelEstado = new JLabel("Estado:");
-        JTextField textEstado = new JTextField(20);
+        JComboBox<String> comboEstado  = new JComboBox<>(new String[] {"Habilitado", "Inhabilitado"});
 
         JLabel labelIdioma = new JLabel("Idioma:");
         JTextField textIdioma = new JTextField(20);
@@ -385,7 +385,7 @@ public class menuPrincipal extends JFrame {
 
         gbc.gridx = 1;
         gbc.gridy = 8;
-        panel.add(textEstado, gbc);
+        panel.add(comboEstado, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 9;
@@ -611,7 +611,7 @@ public class menuPrincipal extends JFrame {
     
         JLabel labelLibrosAsociados = new JLabel("Libros Asociados:");
         JTextField textLibrosAsociados = new JTextField(20);
-    
+        textLibrosAsociados.setEditable(false);
         // Añadir componentes al panel
         gbc.gridwidth = 1;
         gbc.gridx = 0;
@@ -736,8 +736,8 @@ public class menuPrincipal extends JFrame {
         JTextField textCampoEstudio = new JTextField(20);
     
         JLabel labelEstado = new JLabel("Estado:");
-        JTextField textEstado = new JTextField(20);
-    
+        JComboBox<String> comboEstado  = new JComboBox<>(new String[] {"Disponible", "Prestado en biblioteca", "En revisión", "En reparación", "No disponible"});
+
         JLabel labelPaginas = new JLabel("Páginas:");
         JTextField textPaginas = new JTextField(20);
     
@@ -797,7 +797,7 @@ public class menuPrincipal extends JFrame {
     
         gbc.gridx = 1;
         gbc.gridy = 7;
-        panel.add(textEstado, gbc);
+        panel.add(comboEstado, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 8;
@@ -891,7 +891,7 @@ public class menuPrincipal extends JFrame {
         JTextField textFechaPublicacion = new JTextField(20);
     
         JLabel labelPeriodicidad = new JLabel("Periodicidad:");
-        JTextField textPeriodicidad = new JTextField(20);
+        JComboBox<String> comboPeriodicidad = new JComboBox<>(new String[] {"Semanal", "Mensual"});
     
         JLabel labelNumeroVolumen = new JLabel("Número de Volumen:");
         JTextField textNumeroVolumen = new JTextField(20);
@@ -900,7 +900,7 @@ public class menuPrincipal extends JFrame {
         JTextField textCampoInteres = new JTextField(20);
     
         JLabel labelEstado = new JLabel("Estado:");
-        JTextField textEstado = new JTextField(20);
+        JComboBox<String> comboEstado = new JComboBox<>(new String[] {"Disponible", "Prestado en biblioteca", "En revisión", "En reparación", "No disponible"});
     
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -942,7 +942,7 @@ public class menuPrincipal extends JFrame {
     
         gbc.gridx = 1;
         gbc.gridy = 5;
-        panel.add(textPeriodicidad, gbc);
+        panel.add(comboPeriodicidad, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 6;
@@ -966,7 +966,7 @@ public class menuPrincipal extends JFrame {
     
         gbc.gridx = 1;
         gbc.gridy = 8;
-        panel.add(textEstado, gbc);
+        panel.add(comboEstado, gbc);
     
         // Botón para guardar
         JButton buttonGuardar = new JButton("Guardar");
@@ -1052,7 +1052,7 @@ public class menuPrincipal extends JFrame {
     JTextField textDireccion = new JTextField(20);
 
     JLabel labelEstado = new JLabel("Estado:");
-    JTextField textEstado = new JTextField(20);
+    JComboBox<String> comboEstado = new JComboBox<>(new String[] {"Normal", "Sancionado", "Suspendido"});
 
     JLabel labelLibrosPrestados = new JLabel("Libros Prestados:");
     JTextField textLibrosPrestados = new JTextField(20);
@@ -1097,7 +1097,7 @@ public class menuPrincipal extends JFrame {
 
     gbc.gridx = 1;
     gbc.gridy = 5;
-    panel.add(textEstado, gbc);
+    panel.add(comboEstado, gbc);
 
     gbc.gridx = 0;
     gbc.gridy = 6;
@@ -1453,13 +1453,14 @@ public class menuPrincipal extends JFrame {
 
     JLabel labelDiaRetraso = new JLabel("Día Retraso:");
     JTextField textDiaRetraso = new JTextField(20);
+    textDiaRetraso.setEditable(false);    
 
     JLabel labelFechaEntrega = new JLabel("Fecha Entrega:");
     JTextField textFechaEntrega = new JTextField(20);
+    textFechaEntrega.setEditable(false);
 
     JLabel labelEstado = new JLabel("Estado:");
     JComboBox<String> comboEstado = new JComboBox<>(new String[] {"Activa", "Inactiva"});
-
     // Añadir componentes al panel
     gbc.gridwidth = 1;
     gbc.gridx = 0;
