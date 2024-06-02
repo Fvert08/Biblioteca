@@ -264,7 +264,7 @@ public class menuPrincipal extends JFrame {
         panel.repaint();
     }
     public void mostrarFormularioRegistroLibros() {
-        // Limpiar el panel y establecer un nuevo layout
+            // Limpiar el panel y establecer un nuevo layout
         panel.removeAll();
         panel.setLayout(new GridBagLayout());
         setSize(400, 500);
@@ -273,6 +273,7 @@ public class menuPrincipal extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
+
         // Título
         JLabel labelMenuTitulo = new JLabel("Registrar", SwingConstants.CENTER);
         labelMenuTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -280,6 +281,7 @@ public class menuPrincipal extends JFrame {
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         panel.add(labelMenuTitulo, gbc);
+
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
@@ -404,6 +406,7 @@ public class menuPrincipal extends JFrame {
         gbc.gridx = 1;
         gbc.gridy = 11;
         panel.add(comboCategoria, gbc);
+
         // Botón para guardar
         JButton buttonGuardar = new JButton("Guardar");
         gbc.gridx = 0;
@@ -411,6 +414,7 @@ public class menuPrincipal extends JFrame {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonGuardar, gbc);
+
         // Botón para volver
         JButton buttonVolver = new JButton("Volver");
         gbc.gridx = 0;
@@ -419,13 +423,33 @@ public class menuPrincipal extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonVolver, gbc);
 
-        // ActionListener para el botón Volver
-        buttonVolver.addActionListener(new ActionListener() {
+        // Crear un ActionListener para todos los botones
+        ActionListener listener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mostrarPantallaRegistro();
+                Object source = e.getSource();
+                if (source instanceof JButton) {
+                    JButton button = (JButton) source;
+                    String buttonText = button.getText();
+                    // Usar switch para manejar diferentes botones
+                    switch (buttonText) {
+                        case "Guardar":
+                            System.out.println("Guardar datos");
+                            break;
+                        case "Volver":
+                            mostrarPantallaRegistro();
+                            break;
+                        default:
+                            System.out.println("Botón no reconocido");
+                            break;
+                    }
+                }
             }
-        });
+        };
+
+        // Añadir el ActionListener a los botones
+        buttonGuardar.addActionListener(listener);
+        buttonVolver.addActionListener(listener);
 
         // Actualizar el panel
         panel.revalidate();
