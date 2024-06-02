@@ -556,7 +556,7 @@ public class menuPrincipal extends JFrame {
                             System.out.println("Guardar datos");
                             break;
                         case "Volver":
-                            mostrarMenuPrincipal();
+                            mostrarPantallaRegistro();
                             break;
                         default:
                             System.out.println("Botón no reconocido");
