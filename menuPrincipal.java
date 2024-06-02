@@ -204,7 +204,7 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Libros":
-                            System.out.println("Registrar libro");
+                            mostrarFormularioRegistroLibros();
                             break;
                         case "Tesis":
                             System.out.println("Registrar tesis");
@@ -258,6 +258,198 @@ public class menuPrincipal extends JFrame {
 
         // Añadir el ActionListener al botón de volver
         buttonRegistroVolver.addActionListener(listener);
+
+        // Actualizar el panel
+        panel.revalidate();
+        panel.repaint();
+    }
+    public void mostrarFormularioRegistroLibros() {
+            // Limpiar el panel y establecer un nuevo layout
+        panel.removeAll();
+        panel.setLayout(new GridBagLayout());
+        setSize(400, 500);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.WEST;
+
+        // Título
+        JLabel labelMenuTitulo = new JLabel("Registrar", SwingConstants.CENTER);
+        labelMenuTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        panel.add(labelMenuTitulo, gbc);
+
+        // Crear etiquetas y campos de texto
+        JLabel labelID = new JLabel("ID:");
+        JTextField textID = new JTextField(20);
+        textID.setEditable(false);  // No editable
+
+        JLabel labelGenero = new JLabel("Genero:");
+        JTextField textGenero = new JTextField(20);
+
+        JLabel labelTitulo = new JLabel("Titulo:");
+        JTextField textTitulo = new JTextField(20);
+
+        JLabel labelEdicion = new JLabel("Edicion:");
+        JTextField textEdicion = new JTextField(20);
+
+        JLabel labelAnioPublicacion = new JLabel("Año Publicación:");
+        JTextField textAnioPublicacion = new JTextField(20);
+
+        JLabel labelEditorial = new JLabel("Editorial:");
+        JTextField textEditorial = new JTextField(20);
+
+        JLabel labelAutor = new JLabel("Autor:");
+        JTextField textAutor = new JTextField(20);
+
+        JLabel labelEstado = new JLabel("Estado:");
+        JTextField textEstado = new JTextField(20);
+
+        JLabel labelIdioma = new JLabel("Idioma:");
+        JTextField textIdioma = new JTextField(20);
+
+        JLabel labelCopias = new JLabel("Copias:");
+        JTextField textCopias = new JTextField(20);
+
+        JLabel labelCategoria = new JLabel("Categoria:");
+        JComboBox<String> comboCategoria = new JComboBox<>(new String[] {"Categoria 1", "Categoria 2", "Categoria 3"});
+
+        // Añadir componentes al panel
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelID, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        panel.add(textID, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(labelGenero, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        panel.add(textGenero, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(labelTitulo, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        panel.add(textTitulo, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(labelEdicion, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        panel.add(textEdicion, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panel.add(labelAnioPublicacion, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        panel.add(textAnioPublicacion, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        panel.add(labelEditorial, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 6;
+        panel.add(textEditorial, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        panel.add(labelAutor, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 7;
+        panel.add(textAutor, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        panel.add(labelEstado, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 8;
+        panel.add(textEstado, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        panel.add(labelIdioma, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 9;
+        panel.add(textIdioma, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 10;
+        panel.add(labelCopias, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 10;
+        panel.add(textCopias, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 11;
+        panel.add(labelCategoria, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 11;
+        panel.add(comboCategoria, gbc);
+
+        // Botón para guardar
+        JButton buttonGuardar = new JButton("Guardar");
+        gbc.gridx = 0;
+        gbc.gridy = 12;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(buttonGuardar, gbc);
+
+        // Botón para volver
+        JButton buttonVolver = new JButton("Volver");
+        gbc.gridx = 0;
+        gbc.gridy = 13;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(buttonVolver, gbc);
+
+        // Crear un ActionListener para todos los botones
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object source = e.getSource();
+                if (source instanceof JButton) {
+                    JButton button = (JButton) source;
+                    String buttonText = button.getText();
+                    // Usar switch para manejar diferentes botones
+                    switch (buttonText) {
+                        case "Guardar":
+                            System.out.println("Guardar datos");
+                            break;
+                        case "Volver":
+                            mostrarPantallaRegistro();
+                            break;
+                        default:
+                            System.out.println("Botón no reconocido");
+                            break;
+                    }
+                }
+            }
+        };
+
+        // Añadir el ActionListener a los botones
+        buttonGuardar.addActionListener(listener);
+        buttonVolver.addActionListener(listener);
 
         // Actualizar el panel
         panel.revalidate();
