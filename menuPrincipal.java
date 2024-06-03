@@ -1040,7 +1040,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setEditable(false);  // No editable
+    //textID.setEditable(false);  // No editable
 
     JLabel labelNombre = new JLabel("Nombre:");
     JTextField textNombre = new JTextField(20);
@@ -1134,7 +1134,14 @@ public class menuPrincipal extends JFrame {
                 // Usar switch para manejar diferentes botones
                 switch (buttonText) {
                     case "Guardar":
-                        System.out.println("Guardar datos del lector");
+                        int id = Integer.parseInt(textID.getText());
+                        String nombre = textNombre.getText();
+                        double telefono = Double.parseDouble(textTelefono.getText());
+                        String direccion = textDireccion.getText();
+                        int estado = comboEstado.getSelectedIndex(); // Aquí necesitas convertir el índice en el valor correcto
+                        int librosPrestados = Integer.parseInt(textLibrosPrestados.getText());
+                        Lector lector = new Lector(id, nombre, telefono, direccion, estado, librosPrestados);
+                        gestionTxt.escribirLector(lector, "lectores.txt");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();

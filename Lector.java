@@ -65,4 +65,7 @@ public class Lector {
     public void setLibrosPrestados(int librosPrestados) {
         this.librosPrestados = librosPrestados;
     }
+    public String toString() {
+        return id + "," + nombre + "," + telefono + "," + direccion + "," + estado + "," + librosPrestados;
+    }
 }
