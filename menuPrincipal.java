@@ -28,7 +28,7 @@ public class menuPrincipal extends JFrame {
         // Limpiar el panel y restablecer el layout original
         panel.removeAll();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        setSize(300, 260);
+        setSize(250, 200);
 
         // Crea label cabecera Menú
         JLabel labelMenú = new JLabel("Menú", SwingConstants.CENTER);
@@ -36,9 +36,7 @@ public class menuPrincipal extends JFrame {
 
         // Crear los botones
         JButton buttonRegistrar = new JButton("Registrar");
-        JButton buttonBuscar = new JButton("Buscar");
-        JButton buttonModificarHabilitar = new JButton("Modificar / Habilitar");
-        JButton buttonEliminarDeshabilitar = new JButton("Eliminar / Deshabilitar");
+        JButton buttonGestionar = new JButton("Gestionar registros");
         JButton buttonSalir = new JButton("Salir");
 
         // Añadir label
@@ -48,20 +46,14 @@ public class menuPrincipal extends JFrame {
         // Añadir los botones al panel
         panel.add(buttonRegistrar);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(buttonBuscar);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(buttonModificarHabilitar);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(buttonEliminarDeshabilitar);
+        panel.add(buttonGestionar);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(buttonSalir);
 
         // Centrar los botones y label
         labelMenú.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonRegistrar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonBuscar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonModificarHabilitar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonEliminarDeshabilitar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonGestionar.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Crear un ActionListener para todos los botones
@@ -77,14 +69,8 @@ public class menuPrincipal extends JFrame {
                         case "Registrar":
                             mostrarPantallaRegistro();
                             break;
-                        case "Buscar":
-                            System.out.println("Buscar");
-                            break;
-                        case "Modificar / Habilitar":
-                            System.out.println("Modificar / Habilitar");
-                            break;
-                        case "Eliminar / Deshabilitar":
-                            System.out.println("Eliminar / Deshabilitar");
+                        case "Gestionar registros":
+                            mostrarPantallaGestionar();
                             break;
                         case "Salir":
                             System.exit(0);
@@ -99,9 +85,7 @@ public class menuPrincipal extends JFrame {
 
         // Añadir el ActionListener a todos los botones
         buttonRegistrar.addActionListener(listener);
-        buttonBuscar.addActionListener(listener);
-        buttonModificarHabilitar.addActionListener(listener);
-        buttonEliminarDeshabilitar.addActionListener(listener);
+        buttonGestionar.addActionListener(listener);
         buttonSalir.addActionListener(listener);
 
         // Actualizar el panel
@@ -1559,6 +1543,142 @@ public class menuPrincipal extends JFrame {
     panel.repaint();
 }
 
+    //Menu gestionar registros
+    public void mostrarPantallaGestionar() {
+        panel.removeAll();
+        panel.setLayout(new GridBagLayout());
+        setSize(400, 400);
+        // Limpiar el panel y establecer un nuevo layout
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        // Título
+        JLabel labelTitulo = new JLabel("Gestionar", SwingConstants.CENTER);
+        labelTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        
+        panel.add(labelTitulo, gbc);
+
+        // Etiqueta "Seleccione el tipo"
+        JLabel labelSeleccioneTipo = new JLabel("Seleccione el tipo:");
+        gbc.gridwidth = 2;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelSeleccioneTipo, gbc);
+
+        // ComboBox con las opciones
+        JComboBox<String> comboTipo = new JComboBox<>(new String[]{"Libro", "Tesis", "Articulo", "Copia", "Prestamo", "Multa", "Autor", "Lector", "Categoria"});
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(comboTipo, gbc);
+
+        // Etiqueta "Buscar Por:"
+        JLabel labelBuscarPor = new JLabel("Buscar Por:");
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(labelBuscarPor, gbc);
+
+        // TextBox para buscar
+        JTextField textBuscar = new JTextField(20);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        panel.add(textBuscar, gbc);
+
+        // Botón "Buscar"
+        JButton buttonBuscar = new JButton("Buscar");
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(buttonBuscar, gbc);
+        
+        
+        // Tabla para mostrar resultados
+    String[] columnNames = {"Columna 1", "Columna 2", "Columna 3", "Columna 4", "Columna 5"};
+    Object[][] data = {
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"}
+    };
+
+    JTable table = new JTable(data, columnNames);
+    JScrollPane scrollPane = new JScrollPane(table);
+    gbc.gridx = 0;
+    gbc.gridy = 5;
+    gbc.gridwidth = 2;
+    gbc.gridheight = 5;  // Ajuste de altura
+    gbc.fill = GridBagConstraints.BOTH;  // Permitir expansión en ambos sentidos
+    gbc.weightx = 1.0;  // Distribución horizontal del espacio
+    gbc.weighty = 1.0;  // Distribución vertical del espacio
+    panel.add(scrollPane, gbc);
+
+
+        // Botón "Atras"
+        JButton buttonAtras = new JButton("Atras");
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 11;
+        gbc.weightx = 0.0;  // Distribución horizontal del espacio
+        gbc.weighty = 0.0;
+        panel.add(buttonAtras, gbc);
+
+        // Botón "Editar / Habilitar"
+        JButton buttonEditar = new JButton("Editar / Habilitar");
+        gbc.gridx = 1;
+        gbc.gridy = 11;
+        panel.add(buttonEditar, gbc);
+
+        // Botón "Eliminar / Habilitar"
+        JButton buttonEliminar = new JButton("Eliminar / Deshabilitar");
+        gbc.gridx = 1;
+        gbc.gridy = 13;
+        panel.add(buttonEliminar, gbc);
+
+        // Añadir el panel al frame
+        add(panel);
+        setVisible(true);
+
+        // ActionListener para el botón "Atras"
+        buttonAtras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Acción para volver a la pantalla anterior
+                System.out.println("Volver a la pantalla anterior");
+            }
+        });
+
+        // ActionListener para el botón "Buscar"
+        buttonBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Acción para buscar
+                System.out.println("Buscar: " + textBuscar.getText());
+            }
+        });
+
+        // ActionListener para el botón "Editar / Habilitar"
+        buttonEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Acción para editar o habilitar
+                System.out.println("Editar / Habilitar seleccionado");
+            }
+        });
+
+        // ActionListener para el botón "Eliminar / Habilitar"
+        buttonEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Acción para eliminar o habilitar
+                System.out.println("Eliminar / Habilitar seleccionado");
+            }
+        });
+    }
     public static void main(String[] args) {
         // Ejecutar la aplicación en el hilo de despacho de eventos
         SwingUtilities.invokeLater(() -> new menuPrincipal());
