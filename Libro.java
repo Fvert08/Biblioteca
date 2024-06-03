@@ -1,5 +1,3 @@
-
-
 public class Libro {
     // Atributos
     private int id;
