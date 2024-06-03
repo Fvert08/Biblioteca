@@ -124,7 +124,7 @@ public class gestionTxt {
                     String[] partes = linea.split(",");
                     for (int i = 0; i < partes.length; i++) {
                         if ("Habilitado".equals(partes[i])) {
-                            partes[i] = "Deshabilitado";
+                            partes[i] = "Inhabilitado";
                             linea = String.join(",", partes);
                             break;
                         }

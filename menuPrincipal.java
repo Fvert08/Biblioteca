@@ -1609,23 +1609,10 @@ public class menuPrincipal extends JFrame {
         gbc.gridy = 2;
         panel.add(comboTipo, gbc);
 
-        // Etiqueta "Buscar Por:"
-        JLabel labelBuscarPor = new JLabel("Buscar Por:");
-        gbc.gridwidth = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        panel.add(labelBuscarPor, gbc);
-
-        // TextBox para buscar
-        JTextField textBuscar = new JTextField(20);
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        panel.add(textBuscar, gbc);
-
         // Botón "Buscar"
         JButton buttonBuscar = new JButton("Buscar");
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(buttonBuscar, gbc);
         
         
@@ -1642,7 +1629,7 @@ public class menuPrincipal extends JFrame {
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
     gbc.gridx = 0;
-    gbc.gridy = 5;
+    gbc.gridy = 4;
     gbc.gridwidth = 2;
     gbc.gridheight = 5;  // Ajuste de altura
     gbc.fill = GridBagConstraints.BOTH;  // Permitir expansión en ambos sentidos
@@ -1656,7 +1643,7 @@ public class menuPrincipal extends JFrame {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 9;
         gbc.weightx = 0.0;  // Distribución horizontal del espacio
         gbc.weighty = 0.0;
         panel.add(buttonVolver, gbc);
@@ -1664,13 +1651,13 @@ public class menuPrincipal extends JFrame {
         // Botón "Editar / Habilitar"
         JButton buttonEditar = new JButton("Editar / Habilitar");
         gbc.gridx = 1;
-        gbc.gridy = 11;
+        gbc.gridy = 9;
         panel.add(buttonEditar, gbc);
 
         // Botón "Eliminar / Habilitar"
         JButton buttonEliminar = new JButton("Eliminar / Deshabilitar");
         gbc.gridx = 1;
-        gbc.gridy = 13;
+        gbc.gridy = 10;
         panel.add(buttonEliminar, gbc);
 
        // Crear un ActionListener para todos los botones
