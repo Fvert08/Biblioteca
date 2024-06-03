@@ -1,0 +1,3 @@
+0,Sin categoria,Categoria Preincipal,Ninguna
+2,Ficcion,Libros de ficción,Sin categoria
+3,Ficcion dramatica,Lbros de Ficcion dramatica,Ficcion

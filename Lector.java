@@ -2,13 +2,13 @@ public class Lector {
     // Atributos
     private int id;
     private String nombre;
-    private double telefono;
+    private String telefono;
     private String direccion;
-    private int estado;
+    private String estado;
     private int librosPrestados;
 
     // Constructor
-    public Lector(int id, String nombre, double telefono, String direccion, int estado, int librosPrestados) {
+    public Lector(int id, String nombre, String telefono, String direccion, String estado, int librosPrestados) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -34,11 +34,11 @@ public class Lector {
         this.nombre = nombre;
     }
 
-    public double getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(double telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -50,11 +50,11 @@ public class Lector {
         this.direccion = direccion;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -64,5 +64,8 @@ public class Lector {
 
     public void setLibrosPrestados(int librosPrestados) {
         this.librosPrestados = librosPrestados;
+    }
+    public String toString() {
+        return id + "," + nombre + "," + telefono + "," + direccion + "," + estado + "," + librosPrestados;
     }
 }

@@ -28,7 +28,7 @@ public class menuPrincipal extends JFrame {
         // Limpiar el panel y restablecer el layout original
         panel.removeAll();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        setSize(300, 260);
+        setSize(250, 200);
 
         // Crea label cabecera Menú
         JLabel labelMenú = new JLabel("Menú", SwingConstants.CENTER);
@@ -36,9 +36,7 @@ public class menuPrincipal extends JFrame {
 
         // Crear los botones
         JButton buttonRegistrar = new JButton("Registrar");
-        JButton buttonBuscar = new JButton("Buscar");
-        JButton buttonModificarHabilitar = new JButton("Modificar / Habilitar");
-        JButton buttonEliminarDeshabilitar = new JButton("Eliminar / Deshabilitar");
+        JButton buttonGestionar = new JButton("Gestionar registros");
         JButton buttonSalir = new JButton("Salir");
 
         // Añadir label
@@ -48,20 +46,14 @@ public class menuPrincipal extends JFrame {
         // Añadir los botones al panel
         panel.add(buttonRegistrar);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(buttonBuscar);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(buttonModificarHabilitar);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(buttonEliminarDeshabilitar);
+        panel.add(buttonGestionar);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(buttonSalir);
 
         // Centrar los botones y label
         labelMenú.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonRegistrar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonBuscar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonModificarHabilitar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        buttonEliminarDeshabilitar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonGestionar.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonSalir.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Crear un ActionListener para todos los botones
@@ -77,14 +69,8 @@ public class menuPrincipal extends JFrame {
                         case "Registrar":
                             mostrarPantallaRegistro();
                             break;
-                        case "Buscar":
-                            System.out.println("Buscar");
-                            break;
-                        case "Modificar / Habilitar":
-                            System.out.println("Modificar / Habilitar");
-                            break;
-                        case "Eliminar / Deshabilitar":
-                            System.out.println("Eliminar / Deshabilitar");
+                        case "Gestionar registros":
+                            mostrarPantallaGestionar();
                             break;
                         case "Salir":
                             System.exit(0);
@@ -99,9 +85,7 @@ public class menuPrincipal extends JFrame {
 
         // Añadir el ActionListener a todos los botones
         buttonRegistrar.addActionListener(listener);
-        buttonBuscar.addActionListener(listener);
-        buttonModificarHabilitar.addActionListener(listener);
-        buttonEliminarDeshabilitar.addActionListener(listener);
+        buttonGestionar.addActionListener(listener);
         buttonSalir.addActionListener(listener);
 
         // Actualizar el panel
@@ -289,6 +273,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")+1));
         textID.setEditable(false);  // No editable
 
         JLabel labelGenero = new JLabel("Genero:");
@@ -307,8 +292,8 @@ public class menuPrincipal extends JFrame {
         JTextField textEditorial = new JTextField(20);
 
         JLabel labelAutor = new JLabel("Autor:");
-        JComboBox<String> comboAutor  = new JComboBox<>(new String[] {"Autor 1", "Autor 2", "Autor 3"});
-
+        JComboBox<String> comboAutor  = new JComboBox<>();
+        gestionTxt.cargarListaDesdeArchivo(comboAutor, "Autores.txt", 0);
         JLabel labelEstado = new JLabel("Estado:");
         JComboBox<String> comboEstado  = new JComboBox<>(new String[] {"Habilitado", "Inhabilitado"});
 
@@ -319,7 +304,8 @@ public class menuPrincipal extends JFrame {
         JTextField textCopias = new JTextField(20);
 
         JLabel labelCategoria = new JLabel("Categoria:");
-        JComboBox<String> comboCategoria = new JComboBox<>(new String[] {"Categoria 1", "Categoria 2", "Categoria 3"});
+        JComboBox<String> comboCategoria = new JComboBox<>();
+        gestionTxt.cargarListaDesdeArchivo(comboCategoria, "Categorias.txt", 1);
 
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -485,6 +471,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")+1));
         textID.setEditable(false);  // No editable
     
         JLabel labelNombre = new JLabel("Nombre:");
@@ -494,7 +481,8 @@ public class menuPrincipal extends JFrame {
         JTextField textDescripcion = new JTextField(20);
     
         JLabel labelIDCategoriaPrincipal = new JLabel("Categoría Principal:");
-        JComboBox<String> comboCategoriaPrincipal  = new JComboBox<>(new String[] {"Categoria 1", "Categoria 2", "Categoria 3"});
+        JComboBox<String> comboCategoriaPrincipal  = new JComboBox<>();
+        gestionTxt.cargarListaDesdeArchivo(comboCategoriaPrincipal, "Categorias.txt", 1);
     
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -557,7 +545,15 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Guardar":
-                            System.out.println("Guardar datos");
+                           // Obtener los valores de los campos de entrada
+                            int id = Integer.parseInt(textID.getText());
+                            String nombre = textNombre.getText();
+                            String descripcion = textDescripcion.getText();
+                            String categoriaPricipal =  (String) comboCategoriaPrincipal.getSelectedItem();
+                            // Crear una instancia de la clase Categoria con los valores proporcionados
+                            Categoria categoria = new Categoria(id, nombre, descripcion, categoriaPricipal);
+                            // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
+                            gestionTxt.escribirObjeto(categoria, "categorias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -573,7 +569,6 @@ public class menuPrincipal extends JFrame {
         // Añadir el ActionListener a los botones
         buttonGuardar.addActionListener(listener);
         buttonVolver.addActionListener(listener);
-    
         // Actualizar el panel
         panel.revalidate();
         panel.repaint();
@@ -611,7 +606,7 @@ public class menuPrincipal extends JFrame {
     
         JLabel labelLibrosAsociados = new JLabel("Libros Asociados:");
         JTextField textLibrosAsociados = new JTextField(20);
-        textLibrosAsociados.setEditable(false);
+        //textLibrosAsociados.setEditable(false);
         // Añadir componentes al panel
         gbc.gridwidth = 1;
         gbc.gridx = 0;
@@ -673,7 +668,16 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Guardar":
-                            System.out.println("Guardar datos del autor");
+                             // Obtener los valores de los campos de entrada
+                            String nombre = textNombre.getText();
+                            String nacionalidad = textNacionalidad.getText();
+                            String fechaNacimiento = textFechaNacimiento.getText();
+                            int librosAsociados = Integer.parseInt(textLibrosAsociados.getText());
+                            
+                            // Crear una instancia de la clase Autor con los valores proporcionados
+                            Autor autor = new Autor(nombre, nacionalidad, fechaNacimiento, librosAsociados);
+                            // Llamar al método escribirAutor de la clase gestionTxt para guardar el autor en el archivo
+                            gestionTxt.escribirObjeto(autor, "Autores.txt" );
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -718,6 +722,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Tesis.txt")+1));
         textID.setEditable(false);  // No editable
     
         JLabel labelNombreAutores = new JLabel("Nombre de Autores:");
@@ -879,6 +884,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelDOI = new JLabel("DOI:");
         JTextField textDOI = new JTextField(20);
+        textDOI.setText(String.valueOf(gestionTxt.contarRegistros("Articulos.txt")+1));
         textDOI.setEditable(false);  // No editable
     
         JLabel labelTitulo = new JLabel("Título:");
@@ -1040,6 +1046,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")+1));
     textID.setEditable(false);  // No editable
 
     JLabel labelNombre = new JLabel("Nombre:");
@@ -1134,7 +1141,14 @@ public class menuPrincipal extends JFrame {
                 // Usar switch para manejar diferentes botones
                 switch (buttonText) {
                     case "Guardar":
-                        System.out.println("Guardar datos del lector");
+                        int id = Integer.parseInt(textID.getText());
+                        String nombre = textNombre.getText();
+                        String telefono = textTelefono.getText();
+                        String direccion = textDireccion.getText();
+                        String estado =  (String) comboEstado.getSelectedItem(); // Aquí necesitas convertir el índice en el valor correcto
+                        int librosPrestados = Integer.parseInt(textLibrosPrestados.getText());
+                        Lector lector = new Lector(id, nombre, telefono, direccion, estado, librosPrestados);
+                        gestionTxt.escribirObjeto(lector, "lectores.txt");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
@@ -1179,6 +1193,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")+1));
         textID.setEditable(false);  // No editable
 
         JLabel labelEstado = new JLabel("Estado:");
@@ -1296,6 +1311,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")+1));
     textID.setEditable(false);  // No editable
 
     JLabel labelTipo = new JLabel("Tipo:");
@@ -1446,6 +1462,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")+1));
     textID.setEditable(false);  // No editable
 
     JLabel labelIDPrestamo = new JLabel("ID Préstamo:");
@@ -1552,6 +1569,146 @@ public class menuPrincipal extends JFrame {
     panel.repaint();
 }
 
+    //Menu gestionar registros
+    public void mostrarPantallaGestionar() {
+        panel.removeAll();
+        panel.setLayout(new GridBagLayout());
+        setSize(800, 400);
+        // Limpiar el panel y establecer un nuevo layout
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        // Título
+        JLabel labelTitulo = new JLabel("Gestionar", SwingConstants.CENTER);
+        labelTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        
+        panel.add(labelTitulo, gbc);
+
+        // Etiqueta "Seleccione el tipo"
+        JLabel labelSeleccioneTipo = new JLabel("Seleccione el tipo:");
+        gbc.gridwidth = 2;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelSeleccioneTipo, gbc);
+
+        // ComboBox con las opciones
+        JComboBox<String> comboTipo = new JComboBox<>(new String[]{"Libros", "Tesis", "Articulos", "Copias", "Prestamos", "Multas", "Autores", "Lectores", "Categorias"});
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(comboTipo, gbc);
+
+        // Etiqueta "Buscar Por:"
+        JLabel labelBuscarPor = new JLabel("Buscar Por:");
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(labelBuscarPor, gbc);
+
+        // TextBox para buscar
+        JTextField textBuscar = new JTextField(20);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        panel.add(textBuscar, gbc);
+
+        // Botón "Buscar"
+        JButton buttonBuscar = new JButton("Buscar");
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(buttonBuscar, gbc);
+        
+        
+        // Tabla para mostrar resultados
+    String[] columnNames = {"Columna 1", "Columna 2", "Columna 3", "Columna 4", "Columna 5"};
+    Object[][] data = {
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
+        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"}
+    };
+
+    JTable table = new JTable(data, columnNames);
+    JScrollPane scrollPane = new JScrollPane(table);
+    gbc.gridx = 0;
+    gbc.gridy = 5;
+    gbc.gridwidth = 2;
+    gbc.gridheight = 5;  // Ajuste de altura
+    gbc.fill = GridBagConstraints.BOTH;  // Permitir expansión en ambos sentidos
+    gbc.weightx = 1.0;  // Distribución horizontal del espacio
+    gbc.weighty = 1.0;  // Distribución vertical del espacio
+    panel.add(scrollPane, gbc);
+
+
+        // Botón Volver
+        JButton buttonVolver = new JButton("Volver");
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 11;
+        gbc.weightx = 0.0;  // Distribución horizontal del espacio
+        gbc.weighty = 0.0;
+        panel.add(buttonVolver, gbc);
+
+        // Botón "Editar / Habilitar"
+        JButton buttonEditar = new JButton("Editar / Habilitar");
+        gbc.gridx = 1;
+        gbc.gridy = 11;
+        panel.add(buttonEditar, gbc);
+
+        // Botón "Eliminar / Habilitar"
+        JButton buttonEliminar = new JButton("Eliminar / Deshabilitar");
+        gbc.gridx = 1;
+        gbc.gridy = 13;
+        panel.add(buttonEliminar, gbc);
+
+       // Crear un ActionListener para todos los botones
+    ActionListener listener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            if (source instanceof JButton) {
+                JButton button = (JButton) source;
+                String buttonText = button.getText();
+                // Usar switch para manejar diferentes botones
+                switch (buttonText) {
+                    case "Editar / Habilitar":
+                        System.out.println("Editar / Habilitar");
+                        break;
+                    case "Eliminar / Deshabilitar":
+                        System.out.println("Eliminar / Deshabilitar");
+                        break;
+                    case "Buscar":
+                         // Obtener el valor seleccionado del comboTipo y convertirlo a cadena
+                        String estado = (String) comboTipo.getSelectedItem();
+                        // Agregar ".txt" al nombre del archivo
+                        String nombreArchivo = estado + ".txt";
+                        // Llamar al método llenarTabla con el nombre del archivo modificado
+                        gestionTxt.llenarTabla(table, nombreArchivo);
+                        break;
+                    case "Volver":
+                        mostrarMenuPrincipal();
+                        break;
+                    default:
+                        System.out.println("Botón no reconocido");
+                        break;
+                }
+            }
+        }
+    };
+    // Añadir ActionListener a los botones
+    buttonVolver.addActionListener(listener);
+    buttonBuscar.addActionListener(listener);
+    buttonEditar.addActionListener(listener);
+    buttonEliminar.addActionListener(listener);
+
+    // Añadir el panel al frame
+    add(panel);
+    setVisible(true);
+    }
     public static void main(String[] args) {
         // Ejecutar la aplicación en el hilo de despacho de eventos
         SwingUtilities.invokeLater(() -> new menuPrincipal());

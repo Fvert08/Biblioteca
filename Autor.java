@@ -45,4 +45,7 @@ public class Autor {
     public void setLibrosAsociados(int librosAsociados) {
         this.librosAsociados = librosAsociados;
     }
+    public String toString() {
+        return nombre + "," + nacionalidad + "," + fechaNacimiento + "," + librosAsociados;
+    }
 }
