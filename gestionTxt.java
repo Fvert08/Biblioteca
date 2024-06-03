@@ -85,16 +85,38 @@ public class gestionTxt {
         tabla.setModel(modelo);
     }
     public static int contarRegistros(String archivo) {
+        // Contador para el número de registros
         int contador = 0;
+        // Lista para almacenar los números de registros presentes
+        List<Integer> numerosRegistros = new ArrayList<>();
+        
+        // Leer el archivo y contar los registros
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 contador++;
+                String[] partes = linea.split(",");
+                if (partes.length > 0) {
+                    try {
+                        int numeroRegistro = Integer.parseInt(partes[0].trim());
+                        numerosRegistros.add(numeroRegistro);
+                    } catch (NumberFormatException e) {
+                        // Ignorar líneas que no comiencen con un número válido
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return (contador) ;
+        
+        // Verificar si el siguiente número está presente en los registros
+        int siguienteNumero = contador + 1;
+        while (numerosRegistros.contains(siguienteNumero)) {
+            siguienteNumero++;
+        }
+        
+        // Devolver el siguiente número disponible
+        return siguienteNumero;
     }
     public static void cargarListaDesdeArchivo(JComboBox<String> comboBox, String nombreArchivo, int posicion) {
         try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {

@@ -275,7 +275,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")));
         textID.setEditable(false);  // No editable
 
         
@@ -479,7 +479,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")));
         textID.setEditable(false);  // No editable
     
         JLabel labelNombre = new JLabel("Nombre:");
@@ -730,7 +730,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Tesis.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Tesis.txt")));
         textID.setEditable(false);  // No editable
     
         JLabel labelNombreAutores = new JLabel("Nombre de Autores:");
@@ -892,7 +892,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelDOI = new JLabel("DOI:");
         JTextField textDOI = new JTextField(20);
-        textDOI.setText(String.valueOf(gestionTxt.contarRegistros("Articulos.txt")+1));
+        textDOI.setText(String.valueOf(gestionTxt.contarRegistros("Articulos.txt")));
         textDOI.setEditable(false);  // No editable
     
         JLabel labelTitulo = new JLabel("Título:");
@@ -1054,7 +1054,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelNombre = new JLabel("Nombre:");
@@ -1201,7 +1201,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")));
         textID.setEditable(false);  // No editable
 
         JLabel labelEstado = new JLabel("Estado:");
@@ -1319,7 +1319,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelTipo = new JLabel("Tipo:");
@@ -1470,7 +1470,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelIDPrestamo = new JLabel("ID Préstamo:");
