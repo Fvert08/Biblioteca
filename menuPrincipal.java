@@ -1617,15 +1617,15 @@ public class menuPrincipal extends JFrame {
     panel.add(scrollPane, gbc);
 
 
-        // Botón "Atras"
-        JButton buttonAtras = new JButton("Atras");
+        // Botón Volver
+        JButton buttonVolver = new JButton("Volver");
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.gridx = 0;
         gbc.gridy = 11;
         gbc.weightx = 0.0;  // Distribución horizontal del espacio
         gbc.weighty = 0.0;
-        panel.add(buttonAtras, gbc);
+        panel.add(buttonVolver, gbc);
 
         // Botón "Editar / Habilitar"
         JButton buttonEditar = new JButton("Editar / Habilitar");
@@ -1639,45 +1639,44 @@ public class menuPrincipal extends JFrame {
         gbc.gridy = 13;
         panel.add(buttonEliminar, gbc);
 
-        // Añadir el panel al frame
-        add(panel);
-        setVisible(true);
-
-        // ActionListener para el botón "Atras"
-        buttonAtras.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Acción para volver a la pantalla anterior
-                System.out.println("Volver a la pantalla anterior");
+       // Crear un ActionListener para todos los botones
+    ActionListener listener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            if (source instanceof JButton) {
+                JButton button = (JButton) source;
+                String buttonText = button.getText();
+                // Usar switch para manejar diferentes botones
+                switch (buttonText) {
+                    case "Editar / Habilitar":
+                        System.out.println("Editar / Habilitar");
+                        break;
+                    case "Eliminar / Deshabilitar":
+                        System.out.println("Eliminar / Deshabilitar");
+                        break;
+                    case "Buscar":
+                        System.out.println("Buscar");
+                        break;
+                    case "Volver":
+                        mostrarMenuPrincipal();
+                        break;
+                    default:
+                        System.out.println("Botón no reconocido");
+                        break;
+                }
             }
-        });
+        }
+    };
+    // Añadir ActionListener a los botones
+    buttonVolver.addActionListener(listener);
+    buttonBuscar.addActionListener(listener);
+    buttonEditar.addActionListener(listener);
+    buttonEliminar.addActionListener(listener);
 
-        // ActionListener para el botón "Buscar"
-        buttonBuscar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Acción para buscar
-                System.out.println("Buscar: " + textBuscar.getText());
-            }
-        });
-
-        // ActionListener para el botón "Editar / Habilitar"
-        buttonEditar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Acción para editar o habilitar
-                System.out.println("Editar / Habilitar seleccionado");
-            }
-        });
-
-        // ActionListener para el botón "Eliminar / Habilitar"
-        buttonEliminar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Acción para eliminar o habilitar
-                System.out.println("Eliminar / Habilitar seleccionado");
-            }
-        });
+    // Añadir el panel al frame
+    add(panel);
+    setVisible(true);
     }
     public static void main(String[] args) {
         // Ejecutar la aplicación en el hilo de despacho de eventos
