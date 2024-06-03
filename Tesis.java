@@ -2,16 +2,17 @@ import java.util.List;
 
 public class Tesis {
     // Atributos
-    private List<String> nombreAutores;
+
+    private String nombreAutores;
     private String institucionAcademica;
     private String fechaInvestigacion;
     private String fechaPresentacion;
     private String campoEstudio;
-    private int estado;
+    private String  estado;
     private int paginas;
 
     // Constructor
-    public Tesis(List<String> nombreAutores, String institucionAcademica, String fechaInvestigacion, String fechaPresentacion, String campoEstudio, int estado, int paginas) {
+    public Tesis(String nombreAutores, String institucionAcademica, String fechaInvestigacion, String fechaPresentacion, String campoEstudio, String  estado, int paginas) {
         this.nombreAutores = nombreAutores;
         this.institucionAcademica = institucionAcademica;
         this.fechaInvestigacion = fechaInvestigacion;
@@ -22,11 +23,11 @@ public class Tesis {
     }
 
     // Métodos getters y setters
-    public List<String> getNombreAutores() {
+    public String getNombreAutores() {
         return nombreAutores;
     }
 
-    public void setNombreAutores(List<String> nombreAutores) {
+    public void setNombreAutores(String nombreAutores) {
         this.nombreAutores = nombreAutores;
     }
 
@@ -62,11 +63,11 @@ public class Tesis {
         this.campoEstudio = campoEstudio;
     }
 
-    public int getEstado() {
+    public String  getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String  estado) {
         this.estado = estado;
     }
 
@@ -78,4 +79,7 @@ public class Tesis {
         this.paginas = paginas;
     }
 
+    public String toString() {
+        return nombreAutores + "," + institucionAcademica + "," + fechaInvestigacion + "," + fechaInvestigacion + "," + fechaPresentacion + ","+ campoEstudio + "," + estado + "," + paginas;
+    }
 }

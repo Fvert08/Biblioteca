@@ -47,6 +47,5 @@ public class Autor {
     }
     public String toString() {
         return nombre + "," + nacionalidad + "," + fechaNacimiento + "," + librosAsociados;
-
     }
 }
