@@ -304,7 +304,8 @@ public class menuPrincipal extends JFrame {
         JTextField textCopias = new JTextField(20);
 
         JLabel labelCategoria = new JLabel("Categoria:");
-        JComboBox<String> comboCategoria = new JComboBox<>(new String[] {"Categoria 1", "Categoria 2", "Categoria 3"});
+        JComboBox<String> comboCategoria = new JComboBox<>();
+        gestionTxt.cargarListaDesdeArchivo(comboCategoria, "Categorias.txt", 1);
 
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -480,7 +481,8 @@ public class menuPrincipal extends JFrame {
         JTextField textDescripcion = new JTextField(20);
     
         JLabel labelIDCategoriaPrincipal = new JLabel("Categoría Principal:");
-        JComboBox<String> comboCategoriaPrincipal  = new JComboBox<>(new String[] {"Categoria 1", "Categoria 2", "Categoria 3"});
+        JComboBox<String> comboCategoriaPrincipal  = new JComboBox<>();
+        gestionTxt.cargarListaDesdeArchivo(comboCategoriaPrincipal, "Categorias.txt", 1);
     
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -543,7 +545,15 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Guardar":
-                            System.out.println("Guardar datos");
+                           // Obtener los valores de los campos de entrada
+                            int id = Integer.parseInt(textID.getText());
+                            String nombre = textNombre.getText();
+                            String descripcion = textDescripcion.getText();
+                            String categoriaPricipal =  (String) comboCategoriaPrincipal.getSelectedItem();
+                            // Crear una instancia de la clase Categoria con los valores proporcionados
+                            Categoria categoria = new Categoria(id, nombre, descripcion, categoriaPricipal);
+                            // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
+                            gestionTxt.escribirObjeto(categoria, "categorias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -559,7 +569,6 @@ public class menuPrincipal extends JFrame {
         // Añadir el ActionListener a los botones
         buttonGuardar.addActionListener(listener);
         buttonVolver.addActionListener(listener);
-    
         // Actualizar el panel
         panel.revalidate();
         panel.repaint();

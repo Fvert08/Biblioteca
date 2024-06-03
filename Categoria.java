@@ -3,10 +3,10 @@ public class Categoria {
     private int id;
     private String nombre;
     private String descripcion;
-    private int idCategoriaPrincipal;
+    private String idCategoriaPrincipal;
 
     // Constructor
-    public Categoria(int id, String nombre, String descripcion, int idCategoriaPrincipal) {
+    public Categoria(int id, String nombre, String descripcion, String idCategoriaPrincipal) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -38,14 +38,14 @@ public class Categoria {
         this.descripcion = descripcion;
     }
 
-    public int getIdCategoriaPrincipal() {
+    public String getIdCategoriaPrincipal() {
         return idCategoriaPrincipal;
     }
 
-    public void setIdCategoriaPrincipal(int idCategoriaPrincipal) {
+    public void setIdCategoriaPrincipal(String idCategoriaPrincipal) {
         this.idCategoriaPrincipal = idCategoriaPrincipal;
     }
     public String toString() {
-        return nombre + "," + nombre + "," + descripcion + "," + idCategoriaPrincipal;
+        return id + "," + nombre + "," + descripcion + "," + idCategoriaPrincipal;
     }
 }
