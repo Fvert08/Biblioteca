@@ -1,23 +1,21 @@
-import java.util.List;
+
 
 public class Libro {
     // Atributos
     private int id;
-    private String genero;
     private String titulo;
-    private int edicion;
-    private int anoPublicacion;
+    private String edicion;
+    private String anoPublicacion;
     private String editorial;
     private String autor;
-    private int estado;
-    private List<String> idioma;
+    private String estado;
+    private String idioma;
     private int copias;
-    private int categoria;
+    private String categoria;
 
     // Constructor
-    public Libro(int id, String genero, String titulo, int edicion, int anoPublicacion, String editorial, String autor, int estado, List<String> idioma, int copias, int categoria) {
+    public Libro(int id,String titulo, String edicion, String anoPublicacion, String editorial, String autor, String estado, String idioma, int copias, String categoria) {
         this.id = id;
-        this.genero = genero;
         this.titulo = titulo;
         this.edicion = edicion;
         this.anoPublicacion = anoPublicacion;
@@ -38,14 +36,6 @@ public class Libro {
         this.id = id;
     }
 
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
     public String getTitulo() {
         return titulo;
     }
@@ -54,19 +44,19 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public int getEdicion() {
+    public String getEdicion() {
         return edicion;
     }
 
-    public void setEdicion(int edicion) {
+    public void setEdicion(String edicion) {
         this.edicion = edicion;
     }
 
-    public int getAnoPublicacion() {
+    public String getAnoPublicacion() {
         return anoPublicacion;
     }
 
-    public void setAnoPublicacion(int anoPublicacion) {
+    public void setAnoPublicacion(String anoPublicacion) {
         this.anoPublicacion = anoPublicacion;
     }
 
@@ -86,19 +76,19 @@ public class Libro {
         this.autor = autor;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public List<String> getIdioma() {
+    public String getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(List<String> idioma) {
+    public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
 
@@ -110,12 +100,16 @@ public class Libro {
         this.copias = copias;
     }
 
-    public int getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(int categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
+    @Override
+    public String toString() {
+        return id + "," + titulo + "," + edicion + "," + anoPublicacion + "," + 
+               editorial + "," + autor + "," + estado + "," + idioma + "," + copias + "," + categoria;
+    }
 }
