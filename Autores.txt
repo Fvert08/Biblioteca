@@ -1,3 +1,1 @@
 Gabriel,Colombia,1723,1
-Garcia,Colombia,1728,2
-Marquez,Colombia,1721,3
