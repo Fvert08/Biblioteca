@@ -292,8 +292,8 @@ public class menuPrincipal extends JFrame {
         JTextField textEditorial = new JTextField(20);
 
         JLabel labelAutor = new JLabel("Autor:");
-        JComboBox<String> comboAutor  = new JComboBox<>(new String[] {"Autor 1", "Autor 2", "Autor 3"});
-
+        JComboBox<String> comboAutor  = new JComboBox<>();
+        gestionTxt.cargarListaDesdeArchivo(comboAutor, "Autores.txt", 0);
         JLabel labelEstado = new JLabel("Estado:");
         JComboBox<String> comboEstado  = new JComboBox<>(new String[] {"Habilitado", "Inhabilitado"});
 

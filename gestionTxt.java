@@ -1,5 +1,6 @@
 import java.io.*;
 
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,7 +64,7 @@ public class gestionTxt {
             default:
                 columnNames = new String[0]; // Columnas vacías si no se encuentra un caso coincidente
                 break;
-        }    
+        }
         modelo.setColumnIdentifiers(columnNames);
         // Leer los datos del archivo y agregarlos al modelo de tabla
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
@@ -71,7 +72,6 @@ public class gestionTxt {
             while ((linea = reader.readLine()) != null) {
                 // Dividir la línea en partes separadas por comas (u otro delimitador, según tu archivo)
                 String[] partes = linea.split(","); // Cambia la coma por el delimitador de tu archivo si es necesario
-    
                 // Agregar las partes como una fila en el modelo de tabla
                 modelo.addRow(partes);
             }
@@ -92,5 +92,19 @@ public class gestionTxt {
             e.printStackTrace();
         }
         return (contador) ;
+    }
+    public static void cargarListaDesdeArchivo(JComboBox<String> comboBox, String nombreArchivo, int posicion) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length > posicion) {
+                    String nombreAutor = partes[posicion];
+                    comboBox.addItem(nombreAutor);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

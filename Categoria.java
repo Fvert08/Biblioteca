@@ -45,4 +45,7 @@ public class Categoria {
     public void setIdCategoriaPrincipal(int idCategoriaPrincipal) {
         this.idCategoriaPrincipal = idCategoriaPrincipal;
     }
+    public String toString() {
+        return nombre + "," + nombre + "," + descripcion + "," + idCategoriaPrincipal;
+    }
 }
