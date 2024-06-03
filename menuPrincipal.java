@@ -401,7 +401,7 @@ public class menuPrincipal extends JFrame {
         // Botón para volver
         JButton buttonVolver = new JButton("Volver");
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 12;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonVolver, gbc);
@@ -430,6 +430,9 @@ public class menuPrincipal extends JFrame {
                         Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, copias, categoria);
                         // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
                         gestionTxt.escribirObjeto(libro, "libros.txt");
+                        // Segeneran las copias necesarias
+                       // String idCopia = String.valueOf(gestionTxt.contarRegistros("Copias.txt")+1);
+                        //Copia copia = new Copia(idCopia, copias, id, copias);
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1693,9 +1696,9 @@ public class menuPrincipal extends JFrame {
                           int selectedRow = table.getSelectedRow();
                         if (selectedRow != -1) {
                             // Llamar al método para eliminar el registro del archivo
-                            gestionTxt.eliminarRegistro(nombreArchivo, selectedRow);
+                            gestionTxt.manejarRegistro (table, nombreArchivo, selectedRow);
                             // Eliminar la fila de la tabla
-                            ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+                            //((DefaultTableModel) table.getModel()).removeRow(selectedRow);
                         }
                         break;
                     case "Buscar":

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class gestionTxt {
     public static <Clase> void escribirObjeto(Clase objeto, String archivo) {
@@ -39,7 +40,7 @@ public class gestionTxt {
                 columnNames = new String[]{"ID", "Nombre", "Telefono", "Direccion", "Estado", "Libros prestados"};
                 break;
             case "Libros.txt":
-                columnNames = new String[]{"ID", "Genero", "Titulo", "Edicion", "Año publicación", "Editorial", "Autor", "Estado", "Idioma", "Copias", "Categoria"};
+                columnNames = new String[]{"ID", "Titulo", "Edición", "Año publicación", "Editorial", "Autor", "Estado", "Idioma", "Copias", "Categoria"};
                 break;
             case "Tesis.txt":
                 columnNames = new String[]{"ID", "Nombre autor", "Institución academica", "Fecha investigación", "Fecha presentación", "Campo estudio", "Estado", "Páginas"};
@@ -109,18 +110,27 @@ public class gestionTxt {
             e.printStackTrace();
         }
     }
-    public static void eliminarRegistro(String archivo, int indiceAEliminar) {
-        List<String> registros = new ArrayList<>();
+    // Método para manejar el registro del archivo basado en el índice de la fila
+    public static void manejarRegistro(JTable tabla, String archivo, int indiceAEliminar) {
+        boolean esLibrosOLectores = archivo.equals("Libros.txt") || archivo.equals("Lectores.txt");
     
-        // Leer el contenido del archivo
+        // Leer el contenido del archivo y almacenarlo en una lista
+        List<String> registros = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
             int currentIndex = 0;
             while ((linea = reader.readLine()) != null) {
-                // Agregar todas las líneas que no coinciden con el índice a eliminar
-                if (currentIndex != indiceAEliminar) {
-                    registros.add(linea);
+                if (esLibrosOLectores && currentIndex == indiceAEliminar) {
+                    String[] partes = linea.split(",");
+                    for (int i = 0; i < partes.length; i++) {
+                        if ("Habilitado".equals(partes[i])) {
+                            partes[i] = "Deshabilitado";
+                            linea = String.join(",", partes);
+                            break;
+                        }
+                    }
                 }
+                registros.add(linea);
                 currentIndex++;
             }
         } catch (IOException e) {
@@ -135,6 +145,13 @@ public class gestionTxt {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    
+        // Si es "Libros.txt" o "Lectores.txt", actualizar la tabla para reflejar el cambio de estado
+        if (esLibrosOLectores) {
+            DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+            int estadoColumnIndex = model.findColumn("Estado");
+            model.setValueAt("Deshabilitado", indiceAEliminar, estadoColumnIndex);
         }
     }
 }
