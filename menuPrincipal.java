@@ -426,7 +426,19 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Guardar":
-                            System.out.println("Guardar datos");
+                        int id = Integer.parseInt(textID.getText());
+                        String titulo = textTitulo.getText();
+                        String edicion = textEdicion.getText();
+                        String aniopublicion = textAnioPublicacion.getText();
+                        String editorial = textEditorial.getText();
+                        String autor = (String)comboAutor.getSelectedItem();
+                        String estado = (String)comboEstado.getSelectedItem();
+                        String idioma = textIdioma.getText();
+                        int copias = Integer.parseInt(textCopias.getText());
+                        String categoria =  (String) comboCategoria.getSelectedItem();
+                        Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, copias, categoria);
+                        // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
+                        gestionTxt.escribirObjeto(libro, "libros.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();

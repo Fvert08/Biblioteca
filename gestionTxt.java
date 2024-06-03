@@ -109,6 +109,7 @@ public class gestionTxt {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
     public static void eliminarRegistro(String archivo, int indiceAEliminar) {
         List<String> registros = new ArrayList<>();
     
@@ -138,3 +139,6 @@ public class gestionTxt {
         }
     }
 }
+=======
+}
+>>>>>>> Boton_gestionar
