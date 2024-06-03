@@ -278,8 +278,7 @@ public class menuPrincipal extends JFrame {
         textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")+1));
         textID.setEditable(false);  // No editable
 
-        JLabel labelGenero = new JLabel("Genero:");
-        JTextField textGenero = new JTextField(20);
+        
 
         JLabel labelTitulo = new JLabel("Titulo:");
         JTextField textTitulo = new JTextField(20);
@@ -321,88 +320,80 @@ public class menuPrincipal extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(labelGenero, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        panel.add(textGenero, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 3;
         panel.add(labelTitulo, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 3;
+        gbc.gridy = 2;
         panel.add(textTitulo, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(labelEdicion, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(textEdicion, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         panel.add(labelAnioPublicacion, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         panel.add(textAnioPublicacion, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 5;
         panel.add(labelEditorial, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 6;
+        gbc.gridy = 5;
         panel.add(textEditorial, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 6;
         panel.add(labelAutor, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 7;
+        gbc.gridy = 6;
         panel.add(comboAutor, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 8;
+        gbc.gridy = 7;
         panel.add(labelEstado, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 8;
+        gbc.gridy = 7;
         panel.add(comboEstado, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 9;
+        gbc.gridy = 8;
         panel.add(labelIdioma, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 9;
+        gbc.gridy = 8;
         panel.add(textIdioma, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 10;
+        gbc.gridy = 9;
         panel.add(labelCopias, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 10;
+        gbc.gridy = 9;
         panel.add(textCopias, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 10;
         panel.add(labelCategoria, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 11;
+        gbc.gridy = 10;
         panel.add(comboCategoria, gbc);
 
         // Botón para guardar
         JButton buttonGuardar = new JButton("Guardar");
         gbc.gridx = 0;
-        gbc.gridy = 12;
+        gbc.gridy = 11;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonGuardar, gbc);
@@ -410,7 +401,7 @@ public class menuPrincipal extends JFrame {
         // Botón para volver
         JButton buttonVolver = new JButton("Volver");
         gbc.gridx = 0;
-        gbc.gridy = 13;
+        gbc.gridy = 11;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonVolver, gbc);
