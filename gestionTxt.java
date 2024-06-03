@@ -81,4 +81,16 @@ public class gestionTxt {
         // Asignar el modelo de tabla a la tabla
         tabla.setModel(modelo);
     }
+    public static int contarRegistros(String archivo) {
+        int contador = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                contador++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return (contador) ;
+    }
 }
