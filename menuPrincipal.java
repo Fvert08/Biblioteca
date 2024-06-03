@@ -1547,7 +1547,7 @@ public class menuPrincipal extends JFrame {
     public void mostrarPantallaGestionar() {
         panel.removeAll();
         panel.setLayout(new GridBagLayout());
-        setSize(400, 400);
+        setSize(800, 400);
         // Limpiar el panel y establecer un nuevo layout
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -1570,7 +1570,7 @@ public class menuPrincipal extends JFrame {
         panel.add(labelSeleccioneTipo, gbc);
 
         // ComboBox con las opciones
-        JComboBox<String> comboTipo = new JComboBox<>(new String[]{"Libro", "Tesis", "Articulo", "Copia", "Prestamo", "Multa", "Autor", "Lector", "Categoria"});
+        JComboBox<String> comboTipo = new JComboBox<>(new String[]{"Libro", "Tesis", "Articulo", "Copia", "Prestamo", "Multa", "Autor", "Lectores", "Categoria"});
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel.add(comboTipo, gbc);
@@ -1656,7 +1656,8 @@ public class menuPrincipal extends JFrame {
                         System.out.println("Eliminar / Deshabilitar");
                         break;
                     case "Buscar":
-                        System.out.println("Buscar");
+                        
+                        gestionTxt.llenarTabla(table, "Lectores.txt");
                         break;
                     case "Volver":
                         mostrarMenuPrincipal();
