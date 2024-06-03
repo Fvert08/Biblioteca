@@ -3,7 +3,7 @@ import java.time.LocalDate;
 public class MenuClases {
         public static void main(String[] args) {
         // Crear un lector
-        Lector lector = new Lector(1, "Juan", 123456789, "Calle Principal 123", 1, 0);
+        Lector lector = new Lector(1, "Juan", "123456789", "Calle Principal 123","Normal" , 0);
         
         // Crear un préstamo
         LocalDate fechaPrestamo = LocalDate.now();

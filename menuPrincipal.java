@@ -1136,9 +1136,9 @@ public class menuPrincipal extends JFrame {
                     case "Guardar":
                         int id = Integer.parseInt(textID.getText());
                         String nombre = textNombre.getText();
-                        double telefono = Double.parseDouble(textTelefono.getText());
+                        String telefono = textTelefono.getText();
                         String direccion = textDireccion.getText();
-                        int estado = comboEstado.getSelectedIndex(); // Aquí necesitas convertir el índice en el valor correcto
+                        String estado =  (String) comboEstado.getSelectedItem(); // Aquí necesitas convertir el índice en el valor correcto
                         int librosPrestados = Integer.parseInt(textLibrosPrestados.getText());
                         Lector lector = new Lector(id, nombre, telefono, direccion, estado, librosPrestados);
                         gestionTxt.escribirLector(lector, "lectores.txt");
