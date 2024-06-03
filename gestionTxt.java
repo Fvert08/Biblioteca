@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -102,6 +104,34 @@ public class gestionTxt {
                     String nombreAutor = partes[posicion];
                     comboBox.addItem(nombreAutor);
                 }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void eliminarRegistro(String archivo, int indiceAEliminar) {
+        List<String> registros = new ArrayList<>();
+    
+        // Leer el contenido del archivo
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            int currentIndex = 0;
+            while ((linea = reader.readLine()) != null) {
+                // Agregar todas las líneas que no coinciden con el índice a eliminar
+                if (currentIndex != indiceAEliminar) {
+                    registros.add(linea);
+                }
+                currentIndex++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+        // Escribir el contenido actualizado de nuevo en el archivo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            for (String registro : registros) {
+                writer.write(registro);
+                writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

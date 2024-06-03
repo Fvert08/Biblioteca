@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -1674,20 +1676,33 @@ public class menuPrincipal extends JFrame {
                 JButton button = (JButton) source;
                 String buttonText = button.getText();
                 // Usar switch para manejar diferentes botones
+                String estado ="";
+                String nombreArchivo = "";
                 switch (buttonText) {
                     case "Editar / Habilitar":
                         System.out.println("Editar / Habilitar");
                         break;
                     case "Eliminar / Deshabilitar":
-                        System.out.println("Eliminar / Deshabilitar");
+                         // Obtener el valor seleccionado del comboTipo y convertirlo a cadena
+                         estado = (String) comboTipo.getSelectedItem();
+                         // Agregar ".txt" al nombre del archivo
+                         nombreArchivo = estado + ".txt";
+                          int selectedRow = table.getSelectedRow();
+                        if (selectedRow != -1) {
+                            // Llamar al método para eliminar el registro del archivo
+                            gestionTxt.eliminarRegistro(nombreArchivo, selectedRow);
+                            // Eliminar la fila de la tabla
+                            ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+                        }
                         break;
                     case "Buscar":
                          // Obtener el valor seleccionado del comboTipo y convertirlo a cadena
-                        String estado = (String) comboTipo.getSelectedItem();
+                        estado = (String) comboTipo.getSelectedItem();
                         // Agregar ".txt" al nombre del archivo
-                        String nombreArchivo = estado + ".txt";
+                        nombreArchivo = estado + ".txt";
                         // Llamar al método llenarTabla con el nombre del archivo modificado
                         gestionTxt.llenarTabla(table, nombreArchivo);
+                        
                         break;
                     case "Volver":
                         mostrarMenuPrincipal();
