@@ -4,9 +4,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class gestionTxt {
-    public static void escribirLector(Lector lector, String archivo) {
+    public static <Clase> void escribirObjeto(Clase objeto, String archivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo, true))) {
-            writer.write(lector.toString() + "\n");
+            writer.write(objeto.toString() + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,9 +30,41 @@ public class gestionTxt {
         DefaultTableModel modelo = new DefaultTableModel();
     
         // Definir los nombres de las columnas directamente dentro del método
-        String[] columnNames = {"ID", "Nombre", "Telefono", "Direccion", "Estado", "Libros prestados"};
+        String[] columnNames;
+        switch (archivo) {
+            case "Lectores.txt":
+                columnNames = new String[]{"ID", "Nombre", "Telefono", "Direccion", "Estado", "Libros prestados"};
+                break;
+            case "Libros.txt":
+                columnNames = new String[]{"ID", "Genero", "Titulo", "Edicion", "Año publicación", "Editorial", "Autor", "Estado", "Idioma", "Copias", "Categoria"};
+                break;
+            case "Tesis.txt":
+                columnNames = new String[]{"ID", "Nombre autor", "Institución academica", "Fecha investigación", "Fecha presentación", "Campo estudio", "Estado", "Páginas"};
+                break;
+            case "Articulos.txt":
+                columnNames = new String[]{"DOI", "Titulo", "Editor", "Fecha publicación", "Periodicidad", "Numero volumen", "Campo interés", "Estado"};
+                break;
+            case "Categorias.txt":
+                columnNames = new String[]{"ID", "Nombre", "Descripción", "idcategoríaPrincipal"};
+                break;
+            case "Autores.txt":
+                columnNames = new String[]{"Nombre", "Nacionalidad", "Fecha nacimiento", "Libros asociados"};
+                break;
+            case "Copias.txt":
+                columnNames = new String[]{"ID", "Estado", "IDOrigen", "Tipo"};
+                break;
+            case "Prestamos.txt":
+                columnNames = new String[]{"ID", "Tipo", "IDLibro", "IDLector", "Dias prestamo", "Fecha prestamo", "fechaEntrega"};
+                break;
+            case "Multas.txt":
+                columnNames = new String[]{"ID", "ID prestamo", "Dia retraso", "Fecha entrega", "estado"};
+                break;
+            // Agrega más casos según sea necesario
+            default:
+                columnNames = new String[0]; // Columnas vacías si no se encuentra un caso coincidente
+                break;
+        }    
         modelo.setColumnIdentifiers(columnNames);
-    
         // Leer los datos del archivo y agregarlos al modelo de tabla
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String linea;
@@ -46,7 +78,6 @@ public class gestionTxt {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    
         // Asignar el modelo de tabla a la tabla
         tabla.setModel(modelo);
     }

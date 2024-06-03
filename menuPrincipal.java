@@ -595,7 +595,7 @@ public class menuPrincipal extends JFrame {
     
         JLabel labelLibrosAsociados = new JLabel("Libros Asociados:");
         JTextField textLibrosAsociados = new JTextField(20);
-        textLibrosAsociados.setEditable(false);
+        //textLibrosAsociados.setEditable(false);
         // Añadir componentes al panel
         gbc.gridwidth = 1;
         gbc.gridx = 0;
@@ -657,7 +657,17 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Guardar":
-                            System.out.println("Guardar datos del autor");
+                             // Obtener los valores de los campos de entrada
+                            String nombre = textNombre.getText();
+                            String nacionalidad = textNacionalidad.getText();
+                            String fechaNacimiento = textFechaNacimiento.getText();
+                            int librosAsociados = Integer.parseInt(textLibrosAsociados.getText());
+                            
+                            // Crear una instancia de la clase Autor con los valores proporcionados
+                            Autor autor = new Autor(nombre, nacionalidad, fechaNacimiento, librosAsociados);
+                            
+                            // Llamar al método escribirAutor de la clase gestionTxt para guardar el autor en el archivo
+                            gestionTxt.escribirObjeto(autor, "Autores.txt" );
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1125,7 +1135,7 @@ public class menuPrincipal extends JFrame {
                         String estado =  (String) comboEstado.getSelectedItem(); // Aquí necesitas convertir el índice en el valor correcto
                         int librosPrestados = Integer.parseInt(textLibrosPrestados.getText());
                         Lector lector = new Lector(id, nombre, telefono, direccion, estado, librosPrestados);
-                        gestionTxt.escribirLector(lector, "lectores.txt");
+                        gestionTxt.escribirObjeto(lector, "lectores.txt");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
@@ -1570,7 +1580,7 @@ public class menuPrincipal extends JFrame {
         panel.add(labelSeleccioneTipo, gbc);
 
         // ComboBox con las opciones
-        JComboBox<String> comboTipo = new JComboBox<>(new String[]{"Libro", "Tesis", "Articulo", "Copia", "Prestamo", "Multa", "Autor", "Lectores", "Categoria"});
+        JComboBox<String> comboTipo = new JComboBox<>(new String[]{"Libros", "Tesis", "Articulos", "Copias", "Prestamos", "Multas", "Autores", "Lectores", "Categorias"});
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel.add(comboTipo, gbc);
@@ -1656,8 +1666,12 @@ public class menuPrincipal extends JFrame {
                         System.out.println("Eliminar / Deshabilitar");
                         break;
                     case "Buscar":
-                        
-                        gestionTxt.llenarTabla(table, "Lectores.txt");
+                         // Obtener el valor seleccionado del comboTipo y convertirlo a cadena
+                        String estado = (String) comboTipo.getSelectedItem();
+                        // Agregar ".txt" al nombre del archivo
+                        String nombreArchivo = estado + ".txt";
+                        // Llamar al método llenarTabla con el nombre del archivo modificado
+                        gestionTxt.llenarTabla(table, nombreArchivo);
                         break;
                     case "Volver":
                         mostrarMenuPrincipal();
