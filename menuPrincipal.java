@@ -1374,11 +1374,12 @@ public class menuPrincipal extends JFrame {
     JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Libro", "Tesis", "Articulo científico"});
 
     JLabel labelIDEscrito = new JLabel("ID Escrito:");
-    JComboBox<String> comboIDEscrito = new JComboBox<>(new String[] {"idLibro1", "idLibro2"});
+    JComboBox<String> comboIDEscrito = new JComboBox<>();
+    gestionTxt.cargarListaDesdeArchivo(comboIDEscrito, "Copias.txt", 2);
 
     JLabel labelIDLector = new JLabel("ID Lector:");
-    JComboBox<String> comboIDLector = new JComboBox<>(new String[] {"idLector1", "idLector2"});
-
+    JComboBox<String> comboIDLector = new JComboBox<>();
+    gestionTxt.cargarListaDesdeArchivo(comboIDLector, "Lectores.txt", 1);
     JLabel labelDiasPrestamo = new JLabel("Días Préstamo:");
     JTextField textDiasPrestamo = new JTextField(20);
 
@@ -1472,8 +1473,8 @@ public class menuPrincipal extends JFrame {
                 String buttonText = button.getText();
                 // Usar switch para manejar diferentes botones
                 switch (buttonText) {
-                    case "Guardar":
-                        System.out.println("Guardar datos del préstamo");
+                        case "Guardar":
+                        System.out.println("Guardar datos de la multa");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
