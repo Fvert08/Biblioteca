@@ -176,4 +176,67 @@ public class gestionTxt {
             model.setValueAt("Deshabilitado", indiceAEliminar, estadoColumnIndex);
         }
     }
+    
+   
+    public static void editarRegistro(int indiceTabla, JTable tabla, String archivo) {
+        // Leer el contenido del archivo y almacenarlo en una lista
+        List<String> registros = new ArrayList<>();
+        boolean registroCambiado = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            int currentIndex = 0;
+            while ((linea = reader.readLine()) != null) {
+                if (currentIndex == indiceTabla) {
+                    DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+                    int columnCount = model.getColumnCount();
+                    StringBuilder registroNuevo = new StringBuilder();
+                    for (int i = 0; i < columnCount; i++) {
+                        Object valor = model.getValueAt(indiceTabla, i);
+                        registroNuevo.append(valor);
+                        if (i < columnCount - 1) {
+                            registroNuevo.append(",");
+                        }
+                        // Verificar si el registro ha cambiado
+                        if (!valor.equals(linea.split(",")[i])) {
+                            registroCambiado = true;
+                        }
+                    }
+                    linea = registroNuevo.toString();
+                    // Actualizar valores en la tabla
+                    String[] partes = linea.split(",");
+                    for (int i = 0; i < columnCount; i++) {
+                        model.setValueAt(partes[i], indiceTabla, i);
+                    }
+                }
+                registros.add(linea);
+                currentIndex++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    
+        // Si no se cambió ningún registro, establecer el estado en "Habilitado"
+        if (!registroCambiado) {
+            DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+            int estadoColumnIndex = model.findColumn("Estado");
+            model.setValueAt("Habilitado", indiceTabla, estadoColumnIndex);
+            // Actualizar el registro en la lista de registros
+            String[] partes = registros.get(indiceTabla).split(",");
+            partes[estadoColumnIndex] = "Habilitado";
+            registros.set(indiceTabla, String.join(",", partes));
+        }
+    
+        // Escribir el contenido actualizado de nuevo en el archivo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            for (String registro : registros) {
+                writer.write(registro);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+   
+ 
 }
