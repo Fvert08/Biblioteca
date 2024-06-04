@@ -428,8 +428,7 @@ public class menuPrincipal extends JFrame {
                         int copias = Integer.parseInt(textCopias.getText());
                         String categoria =  (String) comboCategoria.getSelectedItem();
                         Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, copias, categoria);
-                        // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
-                        gestionTxt.escribirObjeto(libro, "libros.txt");
+                        gestionTxt.escribirObjeto(libro, "Libros.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -731,8 +730,10 @@ public class menuPrincipal extends JFrame {
         textID.setEditable(false);  // No editable
     
         JLabel labelNombreAutores = new JLabel("Nombre de Autores:");
-        JComboBox<String> comboNombreAutores = new JComboBox<>(new String[] {"Autor 1", "Autor 2", "Autor 3"});
-    
+        JComboBox<String> comboNombreAutores  = new JComboBox<>();
+        gestionTxt.cargarListaDesdeArchivo(comboNombreAutores, "Autores.txt", 0);
+
+
         JLabel labelInstitucionAcademica = new JLabel("Institución Académica:");
         JTextField textInstitucionAcademica = new JTextField(20);
     
@@ -844,7 +845,15 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Guardar":
-                            System.out.println("Guardar datos de la tesis");
+                        String nombreAutores = (String)comboNombreAutores.getSelectedItem();
+                        String institucionAcademica = textInstitucionAcademica.getText();
+                        String fechaInvestigacion = textFechaInvestigacion.getText();
+                        String fechaPresentacion = textFechaPresentacion.getText();
+                        String campoEstudio = textCampoEstudio.getText();
+                        String estado = (String)comboEstado.getSelectedItem();
+                        int paginas = Integer.parseInt(textPaginas.getText());
+                        Tesis tesis= new Tesis(nombreAutores, institucionAcademica, fechaInvestigacion, fechaPresentacion, campoEstudio, estado, paginas);
+                        gestionTxt.escribirObjeto(tesis, "Tesis.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1006,7 +1015,16 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Guardar":
-                            System.out.println("Guardar datos del artículo");
+                            String titulo = textTitulo.getText();
+                            int doi = Integer.parseInt(textDOI.getText());
+                            String editor = textEditor.getText();
+                            String fechaPublicacion = textFechaPublicacion.getText();
+                            String periodicidad = (String)comboPeriodicidad.getSelectedItem();
+                            int numeroVolumen = Integer.parseInt(textNumeroVolumen.getText());
+                            String campoInteres = textCampoInteres.getText();
+                            String estado = (String)comboEstado.getSelectedItem();
+                            ArticuloCientifico articuloCientifico= new ArticuloCientifico(titulo, doi, editor, fechaPublicacion, periodicidad, numeroVolumen, campoInteres, estado);
+                            gestionTxt.escribirObjeto(articuloCientifico, "Articulos.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();

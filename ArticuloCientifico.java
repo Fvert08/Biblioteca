@@ -4,13 +4,13 @@ public class ArticuloCientifico {
     private int doi;
     private String editor;
     private String fechaPublicacion;
-    private int periodicidad;
+    private String  periodicidad;
     private int numeroVolumen;
     private String campoInteres;
-    private int estado;
+    private String estado;
 
     // Constructor
-    public ArticuloCientifico(String titulo, int doi, String editor, String fechaPublicacion, int periodicidad, int numeroVolumen, String campoInteres, int estado) {
+    public ArticuloCientifico(String titulo, int doi, String editor, String fechaPublicacion, String periodicidad, int numeroVolumen, String campoInteres, String estado) {
         this.titulo = titulo;
         this.doi = doi;
         this.editor = editor;
@@ -54,11 +54,11 @@ public class ArticuloCientifico {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public int getPeriodicidad() {
+    public String  getPeriodicidad() {
         return periodicidad;
     }
 
-    public void setPeriodicidad(int periodicidad) {
+    public void setPeriodicidad(String  periodicidad) {
         this.periodicidad = periodicidad;
     }
 
@@ -78,11 +78,16 @@ public class ArticuloCientifico {
         this.campoInteres = campoInteres;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
+    }    
+    // Método toString
+    @Override
+    public String toString() {
+        return titulo + "," + doi + "," + editor + "," + fechaPublicacion + "," +  periodicidad + "," + numeroVolumen + "," + campoInteres + "," + estado;
     }
 }

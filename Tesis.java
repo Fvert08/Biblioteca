@@ -76,7 +76,7 @@ public class Tesis {
     public void setPaginas(int paginas) {
         this.paginas = paginas;
     }
-
+    @Override
     public String toString() {
         return nombreAutores + "," + institucionAcademica + "," + fechaInvestigacion + "," + fechaInvestigacion + "," + fechaPresentacion + ","+ campoEstudio + "," + estado + "," + paginas;
     }
