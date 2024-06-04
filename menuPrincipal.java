@@ -557,6 +557,9 @@ public class menuPrincipal extends JFrame {
                             Categoria categoria = new Categoria(id, nombre, descripcion, categoriaPricipal);
                             // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
                             gestionTxt.escribirObjeto(categoria, "categorias.txt");
+                            textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")));
+                            textNombre.setText("");
+                            textDescripcion.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -681,6 +684,10 @@ public class menuPrincipal extends JFrame {
                             Autor autor = new Autor(nombre, nacionalidad, fechaNacimiento, librosAsociados);
                             // Llamar al método escribirAutor de la clase gestionTxt para guardar el autor en el archivo
                             gestionTxt.escribirObjeto(autor, "Autores.txt" );
+                            textNombre.setText("");
+                            textNacionalidad.setText("");
+                            textFechaNacimiento.setText("");
+                            textLibrosAsociados.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
