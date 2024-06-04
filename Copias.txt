@@ -1,2 +1,7 @@
 1,con retraso,idLibro2,Tesis
 2,en biblioteca,Gabriel,Tesis
+3,en biblioteca,LirboCopia,Libros
+4,en biblioteca,Gabriel,Tesis
+5,en biblioteca,Articulocopia,Articulos
+6,en biblioteca,Lirbo100,Libros
+7,en biblioteca,Gabriel,Tesis

@@ -8,11 +8,10 @@ public class Libro {
     private String autor;
     private String estado;
     private String idioma;
-    private int copias;
     private String categoria;
 
     // Constructor
-    public Libro(int id,String titulo, String edicion, String anoPublicacion, String editorial, String autor, String estado, String idioma, int copias, String categoria) {
+    public Libro(int id,String titulo, String edicion, String anoPublicacion, String editorial, String autor, String estado, String idioma,  String categoria) {
         this.id = id;
         this.titulo = titulo;
         this.edicion = edicion;
@@ -21,7 +20,6 @@ public class Libro {
         this.autor = autor;
         this.estado = estado;
         this.idioma = idioma;
-        this.copias = copias;
         this.categoria = categoria;
     }
 
@@ -90,14 +88,6 @@ public class Libro {
         this.idioma = idioma;
     }
 
-    public int getCopias() {
-        return copias;
-    }
-
-    public void setCopias(int copias) {
-        this.copias = copias;
-    }
-
     public String getCategoria() {
         return categoria;
     }
@@ -108,6 +98,6 @@ public class Libro {
     @Override
     public String toString() {
         return id + "," + titulo + "," + edicion + "," + anoPublicacion + "," + 
-               editorial + "," + autor + "," + estado + "," + idioma + "," + copias + "," + categoria;
+               editorial + "," + autor + "," + estado + "," + idioma + "," + categoria;
     }
 }

@@ -1,17 +1,19 @@
-import java.time.LocalDate;
+
 
 public class Prestamo {
     // Atributos
     private int id;
-    private int idLibro;
-    private int idLector;
+    private String Tipo;
+    private String idLibro;
+    private String idLector;
     private int diasPrestamo;
-    private LocalDate fechaPrestamo;
-    private LocalDate fechaEntrega;
+    private String fechaPrestamo;
+    private String fechaEntrega;
 
     // Constructor
-    public Prestamo(int id, int idLibro, int idLector, int diasPrestamo, LocalDate fechaPrestamo, LocalDate fechaEntrega) {
+    public Prestamo(int id, String Tipo, String idLibro, String idLector, int diasPrestamo, String fechaPrestamo, String fechaEntrega) {
         this.id = id;
+        this.Tipo=Tipo;
         this.idLibro = idLibro;
         this.idLector = idLector;
         this.diasPrestamo = diasPrestamo;
@@ -20,6 +22,13 @@ public class Prestamo {
     }
 
     // Métodos getters y setters
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setId(String Tipo) {
+        this.Tipo = Tipo;
+    }
     public int getId() {
         return id;
     }
@@ -28,19 +37,19 @@ public class Prestamo {
         this.id = id;
     }
 
-    public int getIdLibro() {
+    public String getIdLibro() {
         return idLibro;
     }
 
-    public void setIdLibro(int idLibro) {
+    public void setIdLibro(String idLibro) {
         this.idLibro = idLibro;
     }
 
-    public int getIdLector() {
+    public String getIdLector() {
         return idLector;
     }
 
-    public void setIdLector(int idLector) {
+    public void setIdLector(String idLector) {
         this.idLector = idLector;
     }
 
@@ -52,19 +61,22 @@ public class Prestamo {
         this.diasPrestamo = diasPrestamo;
     }
 
-    public LocalDate getFechaPrestamo() {
+    public String getFechaPrestamo() {
         return fechaPrestamo;
     }
 
-    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+    public void setFechaPrestamo(String fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public LocalDate getFechaEntrega() {
+    public String getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(LocalDate fechaEntrega) {
+    public void setFechaEntrega(String fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
+    }
+    public String toString() {
+        return id + "," + Tipo + "," + idLibro + "," + idLector + "," + diasPrestamo + "," + fechaPrestamo + "," + fechaEntrega;
     }
 }

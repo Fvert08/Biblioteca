@@ -301,9 +301,6 @@ public class menuPrincipal extends JFrame {
         JLabel labelIdioma = new JLabel("Idioma:");
         JTextField textIdioma = new JTextField(20);
 
-        JLabel labelCopias = new JLabel("Copias:");
-        JTextField textCopias = new JTextField(20);
-
         JLabel labelCategoria = new JLabel("Categoria:");
         JComboBox<String> comboCategoria = new JComboBox<>();
         gestionTxt.cargarListaDesdeArchivo(comboCategoria, "Categorias.txt", 1);
@@ -376,24 +373,16 @@ public class menuPrincipal extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 9;
-        panel.add(labelCopias, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 9;
-        panel.add(textCopias, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 10;
         panel.add(labelCategoria, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 10;
+        gbc.gridy = 9;
         panel.add(comboCategoria, gbc);
 
         // Botón para guardar
         JButton buttonGuardar = new JButton("Guardar");
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 10;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonGuardar, gbc);
@@ -401,7 +390,7 @@ public class menuPrincipal extends JFrame {
         // Botón para volver
         JButton buttonVolver = new JButton("Volver");
         gbc.gridx = 0;
-        gbc.gridy = 12;
+        gbc.gridy = 11;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonVolver, gbc);
@@ -425,10 +414,20 @@ public class menuPrincipal extends JFrame {
                         String autor = (String)comboAutor.getSelectedItem();
                         String estado = (String)comboEstado.getSelectedItem();
                         String idioma = textIdioma.getText();
-                        int copias = Integer.parseInt(textCopias.getText());
                         String categoria =  (String) comboCategoria.getSelectedItem();
-                        Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, copias, categoria);
+                        Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, categoria);
                         gestionTxt.escribirObjeto(libro, "Libros.txt");
+                        // Se crea la copia del libro automaticamente
+                        int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                        Copia copia = new Copia(IDcopia, "en biblioteca", titulo, "Libros");
+                        gestionTxt.escribirObjeto(copia, "Copias.txt");
+                        //Se limpian los textbox     
+                        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")));
+                        textTitulo.setText("");
+                        textEdicion.setText("");
+                        textAnioPublicacion.setText("");
+                        textEditorial.setText("");
+                        textIdioma.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -558,6 +557,9 @@ public class menuPrincipal extends JFrame {
                             Categoria categoria = new Categoria(id, nombre, descripcion, categoriaPricipal);
                             // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
                             gestionTxt.escribirObjeto(categoria, "categorias.txt");
+                            textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")));
+                            textNombre.setText("");
+                            textDescripcion.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -610,6 +612,8 @@ public class menuPrincipal extends JFrame {
     
         JLabel labelLibrosAsociados = new JLabel("Libros Asociados:");
         JTextField textLibrosAsociados = new JTextField(20);
+        textLibrosAsociados.setText("0");
+        textLibrosAsociados.setEditable(false); 
         //textLibrosAsociados.setEditable(false);
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -682,6 +686,10 @@ public class menuPrincipal extends JFrame {
                             Autor autor = new Autor(nombre, nacionalidad, fechaNacimiento, librosAsociados);
                             // Llamar al método escribirAutor de la clase gestionTxt para guardar el autor en el archivo
                             gestionTxt.escribirObjeto(autor, "Autores.txt" );
+                            textNombre.setText("");
+                            textNacionalidad.setText("");
+                            textFechaNacimiento.setText("");
+                            textLibrosAsociados.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -854,6 +862,17 @@ public class menuPrincipal extends JFrame {
                         int paginas = Integer.parseInt(textPaginas.getText());
                         Tesis tesis= new Tesis(nombreAutores, institucionAcademica, fechaInvestigacion, fechaPresentacion, campoEstudio, estado, paginas);
                         gestionTxt.escribirObjeto(tesis, "Tesis.txt");
+                        // Se crea la copia del libro automaticamente
+                        int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                        Copia copia = new Copia(IDcopia, "en biblioteca", nombreAutores, "Tesis");
+                        gestionTxt.escribirObjeto(copia, "Copias.txt");
+                        //Se limpian los txtbox
+                        textID.setText(String.valueOf(gestionTxt.contarRegistros("Tesis.txt")));
+                        textInstitucionAcademica.setText("");
+                        textFechaInvestigacion.setText("");
+                        textFechaPresentacion.setText("");
+                        textCampoEstudio.setText("");
+                        textPaginas.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -875,7 +894,7 @@ public class menuPrincipal extends JFrame {
         panel.repaint();
     }
 
-    //Formulario para registrar articulo cientifico
+//Formulario para registrar articulo cientifico
     public void mostrarFormularioArticulo() {
         // Limpiar el panel y establecer un nuevo layout
         panel.removeAll();
@@ -1025,6 +1044,17 @@ public class menuPrincipal extends JFrame {
                             String estado = (String)comboEstado.getSelectedItem();
                             ArticuloCientifico articuloCientifico= new ArticuloCientifico(titulo, doi, editor, fechaPublicacion, periodicidad, numeroVolumen, campoInteres, estado);
                             gestionTxt.escribirObjeto(articuloCientifico, "Articulos.txt");
+                            // Se crea la copia del libro automaticamente
+                            int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                            Copia copia = new Copia(IDcopia, "en biblioteca", titulo, "Articulos");
+                            gestionTxt.escribirObjeto(copia, "Copias.txt");
+                            //Se limpian las textbox
+                            textDOI.setText(String.valueOf(gestionTxt.contarRegistros("Articulos.txt")));
+                            textTitulo.setText("");
+                            textEditor.setText("");
+                            textFechaPublicacion.setText("");
+                            textNumeroVolumen.setText("");
+                            textCampoInteres.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1048,149 +1078,155 @@ public class menuPrincipal extends JFrame {
 
     //Formulario para registrar lectro
     public void mostrarFormularioLector() {
-    // Limpiar el panel y establecer un nuevo layout
-    panel.removeAll();
-    panel.setLayout(new GridBagLayout());
-    setSize(400, 350);
+        // Limpiar el panel y establecer un nuevo layout
+        panel.removeAll();
+        panel.setLayout(new GridBagLayout());
+        setSize(400, 350);
 
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.fill = GridBagConstraints.HORIZONTAL;
-    gbc.insets = new Insets(5, 5, 5, 5);
-    gbc.anchor = GridBagConstraints.WEST;
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.WEST;
 
-    // Título
-    JLabel labelMenuTitulo = new JLabel("Registrar Lector", SwingConstants.CENTER);
-    labelMenuTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    gbc.gridwidth = 2;
-    panel.add(labelMenuTitulo, gbc);
+        // Título
+        JLabel labelMenuTitulo = new JLabel("Registrar Lector", SwingConstants.CENTER);
+        labelMenuTitulo.setFont(new Font("Arial", Font.PLAIN, 20));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        panel.add(labelMenuTitulo, gbc);
 
-    // Crear etiquetas y campos de texto
-    JLabel labelID = new JLabel("ID:");
-    JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")));
-    textID.setEditable(false);  // No editable
+        // Crear etiquetas y campos de texto
+        JLabel labelID = new JLabel("ID:");
+        JTextField textID = new JTextField(20);
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")));
+        textID.setEditable(false);  // No editable
 
-    JLabel labelNombre = new JLabel("Nombre:");
-    JTextField textNombre = new JTextField(20);
+        JLabel labelNombre = new JLabel("Nombre:");
+        JTextField textNombre = new JTextField(20);
 
-    JLabel labelTelefono = new JLabel("Teléfono:");
-    JTextField textTelefono = new JTextField(20);
+        JLabel labelTelefono = new JLabel("Teléfono:");
+        JTextField textTelefono = new JTextField(20);
 
-    JLabel labelDireccion = new JLabel("Dirección:");
-    JTextField textDireccion = new JTextField(20);
+        JLabel labelDireccion = new JLabel("Dirección:");
+        JTextField textDireccion = new JTextField(20);
 
-    JLabel labelEstado = new JLabel("Estado:");
-    JComboBox<String> comboEstado = new JComboBox<>(new String[] {"Normal", "Sancionado", "Suspendido"});
+        JLabel labelEstado = new JLabel("Estado:");
+        JComboBox<String> comboEstado = new JComboBox<>(new String[] {"Normal", "Sancionado", "Suspendido"});
 
-    JLabel labelLibrosPrestados = new JLabel("Libros Prestados:");
-    JTextField textLibrosPrestados = new JTextField(20);
+        JLabel labelLibrosPrestados = new JLabel("Libros Prestados:");
+        JTextField textLibrosPrestados = new JTextField(20);
 
-    // Añadir componentes al panel
-    gbc.gridwidth = 1;
-    gbc.gridx = 0;
-    gbc.gridy = 1;
-    panel.add(labelID, gbc);
+        // Añadir componentes al panel
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panel.add(labelID, gbc);
 
-    gbc.gridx = 1;
-    gbc.gridy = 1;
-    panel.add(textID, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        panel.add(textID, gbc);
 
-    gbc.gridx = 0;
-    gbc.gridy = 2;
-    panel.add(labelNombre, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panel.add(labelNombre, gbc);
 
-    gbc.gridx = 1;
-    gbc.gridy = 2;
-    panel.add(textNombre, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        panel.add(textNombre, gbc);
 
-    gbc.gridx = 0;
-    gbc.gridy = 3;
-    panel.add(labelTelefono, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panel.add(labelTelefono, gbc);
 
-    gbc.gridx = 1;
-    gbc.gridy = 3;
-    panel.add(textTelefono, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        panel.add(textTelefono, gbc);
 
-    gbc.gridx = 0;
-    gbc.gridy = 4;
-    panel.add(labelDireccion, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(labelDireccion, gbc);
 
-    gbc.gridx = 1;
-    gbc.gridy = 4;
-    panel.add(textDireccion, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        panel.add(textDireccion, gbc);
 
-    gbc.gridx = 0;
-    gbc.gridy = 5;
-    panel.add(labelEstado, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panel.add(labelEstado, gbc);
 
-    gbc.gridx = 1;
-    gbc.gridy = 5;
-    panel.add(comboEstado, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        panel.add(comboEstado, gbc);
 
-    gbc.gridx = 0;
-    gbc.gridy = 6;
-    panel.add(labelLibrosPrestados, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        panel.add(labelLibrosPrestados, gbc);
 
-    gbc.gridx = 1;
-    gbc.gridy = 6;
-    panel.add(textLibrosPrestados, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 6;
+        panel.add(textLibrosPrestados, gbc);
 
-    // Botón para guardar
-    JButton buttonGuardar = new JButton("Guardar");
-    gbc.gridx = 0;
-    gbc.gridy = 7;
-    gbc.gridwidth = 2;
-    gbc.anchor = GridBagConstraints.CENTER;
-    panel.add(buttonGuardar, gbc);
+        // Botón para guardar
+        JButton buttonGuardar = new JButton("Guardar");
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(buttonGuardar, gbc);
 
-    // Botón para volver
-    JButton buttonVolver = new JButton("Volver");
-    gbc.gridx = 0;
-    gbc.gridy = 8;
-    gbc.gridwidth = 2;
-    gbc.anchor = GridBagConstraints.CENTER;
-    panel.add(buttonVolver, gbc);
+        // Botón para volver
+        JButton buttonVolver = new JButton("Volver");
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(buttonVolver, gbc);
 
-    // Crear un ActionListener para todos los botones
-    ActionListener listener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Object source = e.getSource();
-            if (source instanceof JButton) {
-                JButton button = (JButton) source;
-                String buttonText = button.getText();
-                // Usar switch para manejar diferentes botones
-                switch (buttonText) {
-                    case "Guardar":
-                        int id = Integer.parseInt(textID.getText());
-                        String nombre = textNombre.getText();
-                        String telefono = textTelefono.getText();
-                        String direccion = textDireccion.getText();
-                        String estado =  (String) comboEstado.getSelectedItem(); // Aquí necesitas convertir el índice en el valor correcto
-                        int librosPrestados = Integer.parseInt(textLibrosPrestados.getText());
-                        Lector lector = new Lector(id, nombre, telefono, direccion, estado, librosPrestados);
-                        gestionTxt.escribirObjeto(lector, "lectores.txt");
-                        break;
-                    case "Volver":
-                        mostrarPantallaRegistro();
-                        break;
-                    default:
-                        System.out.println("Botón no reconocido");
-                        break;
+        // Crear un ActionListener para todos los botones
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object source = e.getSource();
+                if (source instanceof JButton) {
+                    JButton button = (JButton) source;
+                    String buttonText = button.getText();
+                    // Usar switch para manejar diferentes botones
+                    switch (buttonText) {
+                        case "Guardar":
+                            int id = Integer.parseInt(textID.getText());
+                            String nombre = textNombre.getText();
+                            String telefono = textTelefono.getText();
+                            String direccion = textDireccion.getText();
+                            String estado =  (String) comboEstado.getSelectedItem(); // Aquí necesitas convertir el índice en el valor correcto
+                            int librosPrestados = Integer.parseInt(textLibrosPrestados.getText());
+                            Lector lector = new Lector(id, nombre, telefono, direccion, estado, librosPrestados);
+                            gestionTxt.escribirObjeto(lector, "lectores.txt");
+                            //Se limpia el formulario
+                            textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")));
+                            textNombre.setText("");
+                            textTelefono.setText("");
+                            textDireccion.setText("");
+                            textLibrosPrestados.setText("");
+                            break;
+                        case "Volver":
+                            mostrarPantallaRegistro();
+                            break;
+                        default:
+                            System.out.println("Botón no reconocido");
+                            break;
+                    }
                 }
             }
-        }
-    };
+        };
 
-    // Añadir ActionListener a los botones
-    buttonGuardar.addActionListener(listener);
-    buttonVolver.addActionListener(listener);
+        // Añadir ActionListener a los botones
+        buttonGuardar.addActionListener(listener);
+        buttonVolver.addActionListener(listener);
 
-    // Actualizar el panel
-    panel.revalidate();
-    panel.repaint();
+        // Actualizar el panel
+        panel.revalidate();
+        panel.repaint();
 } 
 
     //Formulario para registrar copia
@@ -1223,7 +1259,7 @@ public class menuPrincipal extends JFrame {
         JComboBox<String> comboEstado = new JComboBox<>(new String[] {"en biblioteca", "prestada", "con retraso", "en reparación"});
 
         JLabel labelTipo = new JLabel("Tipo:");
-        JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Tesis", "Libro", "Articulo científico"});
+        JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Tesis", "Libros", "Articulos"});
 
         JLabel labelIDOrigen = new JLabel("ID Origen:");
         JComboBox<String> comboIDOrigen = new JComboBox<>();
@@ -1254,7 +1290,7 @@ public class menuPrincipal extends JFrame {
                     break;
             }
         }
-    });
+        });
 
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -1323,6 +1359,8 @@ public class menuPrincipal extends JFrame {
                             String tipo = (String)comboTipo.getSelectedItem();
                             Copia copia = new Copia(id, estado, idOrigen, tipo) ;
                             gestionTxt.escribirObjeto(copia, "Copias.txt");
+                            //Se crea un nuevo id
+                            textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")));
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1371,13 +1409,26 @@ public class menuPrincipal extends JFrame {
     textID.setEditable(false);  // No editable
 
     JLabel labelTipo = new JLabel("Tipo:");
-    JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Libro", "Tesis", "Articulo científico"});
+    JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Libros", "Tesis", "Articulos"});
 
     JLabel labelIDEscrito = new JLabel("ID Escrito:");
-    JComboBox<String> comboIDEscrito = new JComboBox<>(new String[] {"idLibro1", "idLibro2"});
-
+    JComboBox<String> comboIDEscrito = new JComboBox<>();
+    String comboIDEscritoText =  ((String) comboTipo.getSelectedItem());
+    gestionTxt.cargarListaDesdeArchivoCopias(comboIDEscrito,comboIDEscritoText , 2);
+        // Agregar un ActionListener al JComboBox comboTipo
+        comboTipo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Limpiar el JComboBox comboIDOrigen
+                comboIDEscrito.removeAllItems();
+                // Obtener el ítem seleccionado en comboTipo
+                String comboIDEscritoText =  ((String) comboTipo.getSelectedItem());
+                gestionTxt.cargarListaDesdeArchivoCopias(comboIDEscrito,comboIDEscritoText , 2);
+            }
+            });
     JLabel labelIDLector = new JLabel("ID Lector:");
-    JComboBox<String> comboIDLector = new JComboBox<>(new String[] {"idLector1", "idLector2"});
+    JComboBox<String> comboIDLector = new JComboBox<>();
+    gestionTxt.cargarListaDesdeArchivo(comboIDLector, "Lectores.txt", 1);
 
     JLabel labelDiasPrestamo = new JLabel("Días Préstamo:");
     JTextField textDiasPrestamo = new JTextField(20);
@@ -1472,8 +1523,21 @@ public class menuPrincipal extends JFrame {
                 String buttonText = button.getText();
                 // Usar switch para manejar diferentes botones
                 switch (buttonText) {
-                    case "Guardar":
-                        System.out.println("Guardar datos del préstamo");
+                        case "Guardar":
+                        int id = Integer.parseInt(textID.getText());
+                        String Tipo = (String)comboTipo.getSelectedItem();
+                        String idLibro = (String)comboIDEscrito.getSelectedItem();
+                        String idLector = (String)comboIDLector.getSelectedItem();
+                        int diasPrestamo = Integer.parseInt(textDiasPrestamo.getText());
+                        String fechaPrestamo = textFechaPrestamo.getText();
+                        String fechaEntrega = textFechaEntrega.getText();
+                        Prestamo prestamo = new Prestamo(id, Tipo, idLibro, idLector, diasPrestamo, fechaPrestamo, fechaEntrega);
+                        gestionTxt.escribirObjeto(prestamo, "Prestamos.txt");
+                        //Limpiar formulario
+                        textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")));
+                        textDiasPrestamo.setText("");
+                        textFechaPrestamo.setText("");
+                        textFechaEntrega.setText("");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
@@ -1522,15 +1586,14 @@ public class menuPrincipal extends JFrame {
     textID.setEditable(false);  // No editable
 
     JLabel labelIDPrestamo = new JLabel("ID Préstamo:");
-    JComboBox<String> comboIDPrestamo = new JComboBox<>(new String[] {"idPrestamo1", "idPrestamo2"});
+    JComboBox<String> comboIDPrestamo = new JComboBox<>();
+    gestionTxt.cargarListaDesdeArchivo(comboIDPrestamo, "Prestamos.txt", 0);
 
     JLabel labelDiaRetraso = new JLabel("Día Retraso:");
     JTextField textDiaRetraso = new JTextField(20);
-    textDiaRetraso.setEditable(false);    
 
     JLabel labelFechaEntrega = new JLabel("Fecha Entrega:");
     JTextField textFechaEntrega = new JTextField(20);
-    textFechaEntrega.setEditable(false);
 
     JLabel labelEstado = new JLabel("Estado:");
     JComboBox<String> comboEstado = new JComboBox<>(new String[] {"Activa", "Inactiva"});
@@ -1603,7 +1666,17 @@ public class menuPrincipal extends JFrame {
                 // Usar switch para manejar diferentes botones
                 switch (buttonText) {
                     case "Guardar":
-                        System.out.println("Guardar datos de la multa");
+                        int id = Integer.parseInt(textID.getText());
+                        String idPrestamo = (String)comboIDPrestamo.getSelectedItem();
+                        int diaRetraso = Integer.parseInt(textDiaRetraso.getText());
+                        String fechaEntrega = textFechaEntrega.getText();
+                        String Estado = (String)comboEstado.getSelectedItem();
+                        Multa multa = new Multa(id, idPrestamo, diaRetraso, fechaEntrega, Estado);
+                        gestionTxt.escribirObjeto(multa, "Multas.txt");
+                        //Limpiar formulario
+                        textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")));
+                        textDiaRetraso.setText("");
+                        textFechaEntrega.setText("");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
@@ -1665,15 +1738,10 @@ public class menuPrincipal extends JFrame {
         
         
         // Tabla para mostrar resultados
-    String[] columnNames = {"Columna 1", "Columna 2", "Columna 3", "Columna 4", "Columna 5"};
+    String[] columnNames = {};
     Object[][] data = {
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"}
+        {}
     };
-
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
     gbc.gridx = 0;
