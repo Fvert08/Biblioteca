@@ -1,13 +1,13 @@
 public class Multa {
     // Atributos
     private int id;
-    private int idPrestamo;
+    private String idPrestamo;
     private int diaRetraso;
     private String fechaEntrega;
     private String estado;
 
     // Constructor
-    public Multa(int id, int idPrestamo, int diaRetraso, String fechaEntrega, String estado) {
+    public Multa(int id, String idPrestamo, int diaRetraso, String fechaEntrega, String estado) {
         this.id = id;
         this.idPrestamo = idPrestamo;
         this.diaRetraso = diaRetraso;
@@ -24,11 +24,11 @@ public class Multa {
         this.id = id;
     }
 
-    public int getIdPrestamo() {
+    public String getIdPrestamo() {
         return idPrestamo;
     }
 
-    public void setIdPrestamo(int idPrestamo) {
+    public void setIdPrestamo(String idPrestamo) {
         this.idPrestamo = idPrestamo;
     }
 
@@ -55,6 +55,7 @@ public class Multa {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    
     @Override
     public String toString() {
         return id + "," + idPrestamo + "," + diaRetraso + "," + fechaEntrega + "," + estado;

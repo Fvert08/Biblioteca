@@ -1426,7 +1426,6 @@ public class menuPrincipal extends JFrame {
             });
     JLabel labelIDLector = new JLabel("ID Lector:");
     JComboBox<String> comboIDLector = new JComboBox<>();
-
     gestionTxt.cargarListaDesdeArchivo(comboIDLector, "Lectores.txt", 1);
 
     JLabel labelDiasPrestamo = new JLabel("Días Préstamo:");
@@ -1522,8 +1521,16 @@ public class menuPrincipal extends JFrame {
                 String buttonText = button.getText();
                 // Usar switch para manejar diferentes botones
                 switch (buttonText) {
-                    case "Guardar":
-                        System.out.println("Guardar datos del préstamo");
+                        case "Guardar":
+                        int id = Integer.parseInt(textID.getText());
+                        String Tipo = (String)comboTipo.getSelectedItem();
+                        String idLibro = (String)comboIDEscrito.getSelectedItem();
+                        String idLector = (String)comboIDLector.getSelectedItem();
+                        int diasPrestamo = Integer.parseInt(textDiasPrestamo.getText());
+                        String fechaPrestamo = textFechaPrestamo.getText();
+                        String fechaEntrega = textFechaEntrega.getText();
+                        Prestamo prestamo = new Prestamo(id, Tipo, idLibro, idLector, diasPrestamo, fechaPrestamo, fechaEntrega);
+                        gestionTxt.escribirObjeto(prestamo, "Prestamos.txt");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
@@ -1572,15 +1579,14 @@ public class menuPrincipal extends JFrame {
     textID.setEditable(false);  // No editable
 
     JLabel labelIDPrestamo = new JLabel("ID Préstamo:");
-    JComboBox<String> comboIDPrestamo = new JComboBox<>(new String[] {"idPrestamo1", "idPrestamo2"});
+    JComboBox<String> comboIDPrestamo = new JComboBox<>();
+    gestionTxt.cargarListaDesdeArchivo(comboIDPrestamo, "Prestamos.txt", 0);
 
     JLabel labelDiaRetraso = new JLabel("Día Retraso:");
     JTextField textDiaRetraso = new JTextField(20);
-    textDiaRetraso.setEditable(false);    
 
     JLabel labelFechaEntrega = new JLabel("Fecha Entrega:");
     JTextField textFechaEntrega = new JTextField(20);
-    textFechaEntrega.setEditable(false);
 
     JLabel labelEstado = new JLabel("Estado:");
     JComboBox<String> comboEstado = new JComboBox<>(new String[] {"Activa", "Inactiva"});
@@ -1653,7 +1659,13 @@ public class menuPrincipal extends JFrame {
                 // Usar switch para manejar diferentes botones
                 switch (buttonText) {
                     case "Guardar":
-                        System.out.println("Guardar datos de la multa");
+                        int id = Integer.parseInt(textID.getText());
+                        String idPrestamo = (String)comboIDPrestamo.getSelectedItem();
+                        int diaRetraso = Integer.parseInt(textDiaRetraso.getText());
+                        String fechaEntrega = textFechaEntrega.getText();
+                        String Estado = (String)comboEstado.getSelectedItem();
+                        Multa multa = new Multa(id, idPrestamo, diaRetraso, fechaEntrega, Estado);
+                        gestionTxt.escribirObjeto(multa, "Multas.txt");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
