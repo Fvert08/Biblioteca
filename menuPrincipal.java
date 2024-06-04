@@ -1200,6 +1200,12 @@ public class menuPrincipal extends JFrame {
                             int librosPrestados = Integer.parseInt(textLibrosPrestados.getText());
                             Lector lector = new Lector(id, nombre, telefono, direccion, estado, librosPrestados);
                             gestionTxt.escribirObjeto(lector, "lectores.txt");
+                            //Se limpia el formulario
+                            textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")));
+                            textNombre.setText("");
+                            textTelefono.setText("");
+                            textDireccion.setText("");
+                            textLibrosPrestados.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1351,6 +1357,8 @@ public class menuPrincipal extends JFrame {
                             String tipo = (String)comboTipo.getSelectedItem();
                             Copia copia = new Copia(id, estado, idOrigen, tipo) ;
                             gestionTxt.escribirObjeto(copia, "Copias.txt");
+                            //Se crea un nuevo id
+                            textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")));
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
