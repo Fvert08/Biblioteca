@@ -1375,13 +1375,6 @@ public class menuPrincipal extends JFrame {
 
     JLabel labelIDEscrito = new JLabel("ID Escrito:");
     JComboBox<String> comboIDEscrito = new JComboBox<>();
-<<<<<<< HEAD
-    gestionTxt.cargarListaDesdeArchivo(comboIDEscrito, "Copias.txt", 2);
-
-    JLabel labelIDLector = new JLabel("ID Lector:");
-    JComboBox<String> comboIDLector = new JComboBox<>();
-    gestionTxt.cargarListaDesdeArchivo(comboIDLector, "Lectores.txt", 1);
-=======
     String comboIDEscritoText =  ((String) comboTipo.getSelectedItem());
     gestionTxt.cargarListaDesdeArchivoCopias(comboIDEscrito,comboIDEscritoText , 2);
         // Agregar un ActionListener al JComboBox comboTipo
@@ -1397,10 +1390,8 @@ public class menuPrincipal extends JFrame {
             });
     JLabel labelIDLector = new JLabel("ID Lector:");
     JComboBox<String> comboIDLector = new JComboBox<>();
-
     gestionTxt.cargarListaDesdeArchivo(comboIDLector, "Lectores.txt", 1);
 
->>>>>>> origin/Arreglar_Copias_Libros
     JLabel labelDiasPrestamo = new JLabel("Días Préstamo:");
     JTextField textDiasPrestamo = new JTextField(20);
 
@@ -1495,7 +1486,15 @@ public class menuPrincipal extends JFrame {
                 // Usar switch para manejar diferentes botones
                 switch (buttonText) {
                         case "Guardar":
-                        System.out.println("Guardar datos de la multa");
+                        int id = Integer.parseInt(textID.getText());
+                        String Tipo = (String)comboTipo.getSelectedItem();
+                        String idLibro = (String)comboIDEscrito.getSelectedItem();
+                        String idLector = (String)comboIDLector.getSelectedItem();
+                        int diasPrestamo = Integer.parseInt(textDiasPrestamo.getText());
+                        String fechaPrestamo = textFechaPrestamo.getText();
+                        String fechaEntrega = textFechaEntrega.getText();
+                        Prestamo prestamo = new Prestamo(id, Tipo, idLibro, idLector, diasPrestamo, fechaPrestamo, fechaEntrega);
+                        gestionTxt.escribirObjeto(prestamo, "Prestamos.txt");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
