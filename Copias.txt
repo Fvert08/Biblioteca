@@ -3,3 +3,4 @@
 3,en biblioteca,LirboCopia,Libro
 4,en biblioteca,Gabriel,Tesis
 5,en biblioteca,Articulocopia,Articulo
+6,en biblioteca,Lirbo100,Libro
