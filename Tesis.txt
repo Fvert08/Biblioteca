@@ -1,3 +1,2 @@
-Gabriel,UTP,AYER,AYER,HOY,ARITMETICA,Disponible,10
 Gabriel,UTP,2001,2001,2002,Matematica,Disponible,100
 Gabriel,UTPP,20001,20001,1772,Ciencia,Disponible,100

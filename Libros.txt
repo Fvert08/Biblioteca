@@ -1,6 +1,1 @@
-2,Libro2,2027,2001,Normamama,Gabriel,Inhabilitado,Ingles,2,Ficcion
-3,Libro4,2020,2001,Normalsisisi,Gabriel,Inhabilitado,Checo,2,Ficcion
-4,Libro 5,2029,1999,Norma,Gabriel,Habilitado,Español,1,Ficcion
-5,Lirbo1,2022,2001,Norma,Gabriel,Inhabilitado,Espanol,Ficcion
-6,LirboCopia,2000,1999,Normacopia,Gabriel,Habilitado,Español,Ficcion
-7,Lirbo100,2048,1999,Normasisisi,Gabriel,Habilitado,Español,Sin categoria
+2,Libro2,2027,2001,Normam,Gabriel,Inhabilitado,Ingles,2,Ficcion

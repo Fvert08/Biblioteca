@@ -1,2 +1,1 @@
-q,1,q,1,Semanal,1,q,Disponible
 Articulocopia,2,Javier,2022,Mensual,1,Programacion,Disponible

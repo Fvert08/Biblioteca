@@ -1,2 +1,2 @@
-Gabriel,Colombia,1723,1
+Gabriel,Colombia,1723,0
 Autor111,Espana,1999,0

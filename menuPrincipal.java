@@ -612,6 +612,8 @@ public class menuPrincipal extends JFrame {
     
         JLabel labelLibrosAsociados = new JLabel("Libros Asociados:");
         JTextField textLibrosAsociados = new JTextField(20);
+        textLibrosAsociados.setText("0");
+        textLibrosAsociados.setEditable(false); 
         //textLibrosAsociados.setEditable(false);
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -1531,6 +1533,11 @@ public class menuPrincipal extends JFrame {
                         String fechaEntrega = textFechaEntrega.getText();
                         Prestamo prestamo = new Prestamo(id, Tipo, idLibro, idLector, diasPrestamo, fechaPrestamo, fechaEntrega);
                         gestionTxt.escribirObjeto(prestamo, "Prestamos.txt");
+                        //Limpiar formulario
+                        textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")));
+                        textDiasPrestamo.setText("");
+                        textFechaPrestamo.setText("");
+                        textFechaEntrega.setText("");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
@@ -1666,6 +1673,10 @@ public class menuPrincipal extends JFrame {
                         String Estado = (String)comboEstado.getSelectedItem();
                         Multa multa = new Multa(id, idPrestamo, diaRetraso, fechaEntrega, Estado);
                         gestionTxt.escribirObjeto(multa, "Multas.txt");
+                        //Limpiar formulario
+                        textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")));
+                        textDiaRetraso.setText("");
+                        textFechaEntrega.setText("");
                         break;
                     case "Volver":
                         mostrarPantallaRegistro();
