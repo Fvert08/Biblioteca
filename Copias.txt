@@ -1,0 +1,2 @@
+1,con retraso,idLibro2,Tesis
+2,en biblioteca,Gabriel,Tesis
