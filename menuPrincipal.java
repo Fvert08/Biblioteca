@@ -421,6 +421,13 @@ public class menuPrincipal extends JFrame {
                         int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
                         Copia copia = new Copia(IDcopia, "en biblioteca", titulo, "Libro");
                         gestionTxt.escribirObjeto(copia, "Copias.txt");
+                        //Se limpian los textbox     
+                        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")));
+                        textTitulo.setText("");
+                        textEdicion.setText("");
+                        textAnioPublicacion.setText("");
+                        textEditorial.setText("");
+                        textIdioma.setText("");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
