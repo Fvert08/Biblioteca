@@ -1671,16 +1671,23 @@ public class menuPrincipal extends JFrame {
                 // Usar switch para manejar diferentes botones
                 String estado ="";
                 String nombreArchivo = "";
+                int selectedRow =0;
                 switch (buttonText) {
                     case "Editar / Habilitar":
-                        System.out.println("Editar / Habilitar");
+                        estado = (String) comboTipo.getSelectedItem();
+                        // Agregar ".txt" al nombre del archivo
+                        nombreArchivo = estado + ".txt";
+                        selectedRow = table.getSelectedRow();
+                        if (selectedRow != -1) {   
+                            gestionTxt.editarRegistro(selectedRow, table, nombreArchivo);
+                        }
                         break;
                     case "Eliminar / Deshabilitar":
                          // Obtener el valor seleccionado del comboTipo y convertirlo a cadena
                          estado = (String) comboTipo.getSelectedItem();
                          // Agregar ".txt" al nombre del archivo
                          nombreArchivo = estado + ".txt";
-                          int selectedRow = table.getSelectedRow();
+                        selectedRow = table.getSelectedRow();
                         if (selectedRow != -1) {
                             // Llamar al método para eliminar el registro del archivo
                             gestionTxt.manejarRegistro (table, nombreArchivo, selectedRow);
