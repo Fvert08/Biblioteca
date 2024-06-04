@@ -846,6 +846,10 @@ public class menuPrincipal extends JFrame {
                         int paginas = Integer.parseInt(textPaginas.getText());
                         Tesis tesis= new Tesis(nombreAutores, institucionAcademica, fechaInvestigacion, fechaPresentacion, campoEstudio, estado, paginas);
                         gestionTxt.escribirObjeto(tesis, "Tesis.txt");
+                        // Se crea la copia del libro automaticamente
+                        int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                        Copia copia = new Copia(IDcopia, "en biblioteca", nombreAutores, "Tesis");
+                        gestionTxt.escribirObjeto(copia, "Copias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1017,6 +1021,10 @@ public class menuPrincipal extends JFrame {
                             String estado = (String)comboEstado.getSelectedItem();
                             ArticuloCientifico articuloCientifico= new ArticuloCientifico(titulo, doi, editor, fechaPublicacion, periodicidad, numeroVolumen, campoInteres, estado);
                             gestionTxt.escribirObjeto(articuloCientifico, "Articulos.txt");
+                            // Se crea la copia del libro automaticamente
+                            int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                            Copia copia = new Copia(IDcopia, "en biblioteca", titulo, "Articulo");
+                            gestionTxt.escribirObjeto(copia, "Copias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
