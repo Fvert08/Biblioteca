@@ -275,7 +275,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")));
         textID.setEditable(false);  // No editable
 
         
@@ -401,7 +401,7 @@ public class menuPrincipal extends JFrame {
         // Botón para volver
         JButton buttonVolver = new JButton("Volver");
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 12;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonVolver, gbc);
@@ -428,7 +428,15 @@ public class menuPrincipal extends JFrame {
                         int copias = Integer.parseInt(textCopias.getText());
                         String categoria =  (String) comboCategoria.getSelectedItem();
                         Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, copias, categoria);
+<<<<<<< HEAD
                         gestionTxt.escribirObjeto(libro, "Libros.txt");
+=======
+                        // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
+                        gestionTxt.escribirObjeto(libro, "libros.txt");
+                        // Segeneran las copias necesarias
+                       // String idCopia = String.valueOf(gestionTxt.contarRegistros("Copias.txt")+1);
+                        //Copia copia = new Copia(idCopia, copias, id, copias);
+>>>>>>> bfa1e60993a4909af22605bbecfdd4bd8d434af5
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -475,7 +483,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")));
         textID.setEditable(false);  // No editable
     
         JLabel labelNombre = new JLabel("Nombre:");
@@ -726,7 +734,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Tesis.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Tesis.txt")));
         textID.setEditable(false);  // No editable
     
         JLabel labelNombreAutores = new JLabel("Nombre de Autores:");
@@ -898,7 +906,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelDOI = new JLabel("DOI:");
         JTextField textDOI = new JTextField(20);
-        textDOI.setText(String.valueOf(gestionTxt.contarRegistros("Articulos.txt")+1));
+        textDOI.setText(String.valueOf(gestionTxt.contarRegistros("Articulos.txt")));
         textDOI.setEditable(false);  // No editable
     
         JLabel labelTitulo = new JLabel("Título:");
@@ -1069,7 +1077,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelNombre = new JLabel("Nombre:");
@@ -1216,7 +1224,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")));
         textID.setEditable(false);  // No editable
 
         JLabel labelEstado = new JLabel("Estado:");
@@ -1367,7 +1375,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelTipo = new JLabel("Tipo:");
@@ -1518,7 +1526,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelIDPrestamo = new JLabel("ID Préstamo:");
@@ -1657,23 +1665,10 @@ public class menuPrincipal extends JFrame {
         gbc.gridy = 2;
         panel.add(comboTipo, gbc);
 
-        // Etiqueta "Buscar Por:"
-        JLabel labelBuscarPor = new JLabel("Buscar Por:");
-        gbc.gridwidth = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        panel.add(labelBuscarPor, gbc);
-
-        // TextBox para buscar
-        JTextField textBuscar = new JTextField(20);
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        panel.add(textBuscar, gbc);
-
         // Botón "Buscar"
         JButton buttonBuscar = new JButton("Buscar");
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(buttonBuscar, gbc);
         
         
@@ -1690,7 +1685,7 @@ public class menuPrincipal extends JFrame {
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
     gbc.gridx = 0;
-    gbc.gridy = 5;
+    gbc.gridy = 4;
     gbc.gridwidth = 2;
     gbc.gridheight = 5;  // Ajuste de altura
     gbc.fill = GridBagConstraints.BOTH;  // Permitir expansión en ambos sentidos
@@ -1704,7 +1699,7 @@ public class menuPrincipal extends JFrame {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 9;
         gbc.weightx = 0.0;  // Distribución horizontal del espacio
         gbc.weighty = 0.0;
         panel.add(buttonVolver, gbc);
@@ -1712,13 +1707,13 @@ public class menuPrincipal extends JFrame {
         // Botón "Editar / Habilitar"
         JButton buttonEditar = new JButton("Editar / Habilitar");
         gbc.gridx = 1;
-        gbc.gridy = 11;
+        gbc.gridy = 9;
         panel.add(buttonEditar, gbc);
 
         // Botón "Eliminar / Habilitar"
         JButton buttonEliminar = new JButton("Eliminar / Deshabilitar");
         gbc.gridx = 1;
-        gbc.gridy = 13;
+        gbc.gridy = 10;
         panel.add(buttonEliminar, gbc);
 
        // Crear un ActionListener para todos los botones
@@ -1732,21 +1727,28 @@ public class menuPrincipal extends JFrame {
                 // Usar switch para manejar diferentes botones
                 String estado ="";
                 String nombreArchivo = "";
+                int selectedRow =0;
                 switch (buttonText) {
                     case "Editar / Habilitar":
-                        System.out.println("Editar / Habilitar");
+                        estado = (String) comboTipo.getSelectedItem();
+                        // Agregar ".txt" al nombre del archivo
+                        nombreArchivo = estado + ".txt";
+                        selectedRow = table.getSelectedRow();
+                        if (selectedRow != -1) {   
+                            gestionTxt.editarRegistro(selectedRow, table, nombreArchivo);
+                        }
                         break;
                     case "Eliminar / Deshabilitar":
                          // Obtener el valor seleccionado del comboTipo y convertirlo a cadena
                          estado = (String) comboTipo.getSelectedItem();
                          // Agregar ".txt" al nombre del archivo
                          nombreArchivo = estado + ".txt";
-                          int selectedRow = table.getSelectedRow();
+                        selectedRow = table.getSelectedRow();
                         if (selectedRow != -1) {
                             // Llamar al método para eliminar el registro del archivo
-                            gestionTxt.eliminarRegistro(nombreArchivo, selectedRow);
+                            gestionTxt.manejarRegistro (table, nombreArchivo, selectedRow);
                             // Eliminar la fila de la tabla
-                            ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+                            //((DefaultTableModel) table.getModel()).removeRow(selectedRow);
                         }
                         break;
                     case "Buscar":
