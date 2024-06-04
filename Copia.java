@@ -1,12 +1,12 @@
 public class Copia {
     // Atributos
-    private int id;
-    private int estado;
-    private int idOrigen;
-    private int tipo;
+    private String id;
+    private String estado;
+    private String idOrigen;
+    private String tipo;
 
     // Constructor
-    public Copia(int id, int estado, int idOrigen, int tipo) {
+    public Copia(String id, String estado, String idOrigen, String tipo) {
         this.id = id;
         this.estado = estado;
         this.idOrigen = idOrigen;
@@ -14,35 +14,35 @@ public class Copia {
     }
 
     // Métodos getters y setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public int getIdOrigen() {
+    public String getIdOrigen() {
         return idOrigen;
     }
 
-    public void setIdOrigen(int idOrigen) {
+    public void setIdOrigen(String idOrigen) {
         this.idOrigen = idOrigen;
     }
 
-    public int getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 

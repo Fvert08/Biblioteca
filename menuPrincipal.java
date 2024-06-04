@@ -275,11 +275,10 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Libros.txt")));
         textID.setEditable(false);  // No editable
 
-        JLabel labelGenero = new JLabel("Genero:");
-        JTextField textGenero = new JTextField(20);
+        
 
         JLabel labelTitulo = new JLabel("Titulo:");
         JTextField textTitulo = new JTextField(20);
@@ -321,88 +320,80 @@ public class menuPrincipal extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(labelGenero, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        panel.add(textGenero, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 3;
         panel.add(labelTitulo, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 3;
+        gbc.gridy = 2;
         panel.add(textTitulo, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(labelEdicion, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(textEdicion, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         panel.add(labelAnioPublicacion, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         panel.add(textAnioPublicacion, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 5;
         panel.add(labelEditorial, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 6;
+        gbc.gridy = 5;
         panel.add(textEditorial, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 6;
         panel.add(labelAutor, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 7;
+        gbc.gridy = 6;
         panel.add(comboAutor, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 8;
+        gbc.gridy = 7;
         panel.add(labelEstado, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 8;
+        gbc.gridy = 7;
         panel.add(comboEstado, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 9;
+        gbc.gridy = 8;
         panel.add(labelIdioma, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 9;
+        gbc.gridy = 8;
         panel.add(textIdioma, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 10;
+        gbc.gridy = 9;
         panel.add(labelCopias, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 10;
+        gbc.gridy = 9;
         panel.add(textCopias, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 10;
         panel.add(labelCategoria, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 11;
+        gbc.gridy = 10;
         panel.add(comboCategoria, gbc);
 
         // Botón para guardar
         JButton buttonGuardar = new JButton("Guardar");
         gbc.gridx = 0;
-        gbc.gridy = 12;
+        gbc.gridy = 11;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonGuardar, gbc);
@@ -410,7 +401,7 @@ public class menuPrincipal extends JFrame {
         // Botón para volver
         JButton buttonVolver = new JButton("Volver");
         gbc.gridx = 0;
-        gbc.gridy = 13;
+        gbc.gridy = 12;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonVolver, gbc);
@@ -439,6 +430,9 @@ public class menuPrincipal extends JFrame {
                         Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, copias, categoria);
                         // Llamar al método escribirCategoria de la clase gestionTxt para guardar la categoria en el archivo
                         gestionTxt.escribirObjeto(libro, "libros.txt");
+                        // Segeneran las copias necesarias
+                       // String idCopia = String.valueOf(gestionTxt.contarRegistros("Copias.txt")+1);
+                        //Copia copia = new Copia(idCopia, copias, id, copias);
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -485,7 +479,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Categorias.txt")));
         textID.setEditable(false);  // No editable
     
         JLabel labelNombre = new JLabel("Nombre:");
@@ -736,7 +730,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Tesis.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Tesis.txt")));
         textID.setEditable(false);  // No editable
     
         JLabel labelNombreAutores = new JLabel("Nombre de Autores:");
@@ -898,7 +892,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelDOI = new JLabel("DOI:");
         JTextField textDOI = new JTextField(20);
-        textDOI.setText(String.valueOf(gestionTxt.contarRegistros("Articulos.txt")+1));
+        textDOI.setText(String.valueOf(gestionTxt.contarRegistros("Articulos.txt")));
         textDOI.setEditable(false);  // No editable
     
         JLabel labelTitulo = new JLabel("Título:");
@@ -1060,7 +1054,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Lectores.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelNombre = new JLabel("Nombre:");
@@ -1207,7 +1201,7 @@ public class menuPrincipal extends JFrame {
         // Crear etiquetas y campos de texto
         JLabel labelID = new JLabel("ID:");
         JTextField textID = new JTextField(20);
-        textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")+1));
+        textID.setText(String.valueOf(gestionTxt.contarRegistros("Copias.txt")));
         textID.setEditable(false);  // No editable
 
         JLabel labelEstado = new JLabel("Estado:");
@@ -1325,7 +1319,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Prestamos.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelTipo = new JLabel("Tipo:");
@@ -1476,7 +1470,7 @@ public class menuPrincipal extends JFrame {
     // Crear etiquetas y campos de texto
     JLabel labelID = new JLabel("ID:");
     JTextField textID = new JTextField(20);
-    textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")+1));
+    textID.setText(String.valueOf(gestionTxt.contarRegistros("Multas.txt")));
     textID.setEditable(false);  // No editable
 
     JLabel labelIDPrestamo = new JLabel("ID Préstamo:");
@@ -1615,23 +1609,10 @@ public class menuPrincipal extends JFrame {
         gbc.gridy = 2;
         panel.add(comboTipo, gbc);
 
-        // Etiqueta "Buscar Por:"
-        JLabel labelBuscarPor = new JLabel("Buscar Por:");
-        gbc.gridwidth = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        panel.add(labelBuscarPor, gbc);
-
-        // TextBox para buscar
-        JTextField textBuscar = new JTextField(20);
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        panel.add(textBuscar, gbc);
-
         // Botón "Buscar"
         JButton buttonBuscar = new JButton("Buscar");
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(buttonBuscar, gbc);
         
         
@@ -1648,7 +1629,7 @@ public class menuPrincipal extends JFrame {
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
     gbc.gridx = 0;
-    gbc.gridy = 5;
+    gbc.gridy = 4;
     gbc.gridwidth = 2;
     gbc.gridheight = 5;  // Ajuste de altura
     gbc.fill = GridBagConstraints.BOTH;  // Permitir expansión en ambos sentidos
@@ -1662,7 +1643,7 @@ public class menuPrincipal extends JFrame {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 9;
         gbc.weightx = 0.0;  // Distribución horizontal del espacio
         gbc.weighty = 0.0;
         panel.add(buttonVolver, gbc);
@@ -1670,13 +1651,13 @@ public class menuPrincipal extends JFrame {
         // Botón "Editar / Habilitar"
         JButton buttonEditar = new JButton("Editar / Habilitar");
         gbc.gridx = 1;
-        gbc.gridy = 11;
+        gbc.gridy = 9;
         panel.add(buttonEditar, gbc);
 
         // Botón "Eliminar / Habilitar"
         JButton buttonEliminar = new JButton("Eliminar / Deshabilitar");
         gbc.gridx = 1;
-        gbc.gridy = 13;
+        gbc.gridy = 10;
         panel.add(buttonEliminar, gbc);
 
        // Crear un ActionListener para todos los botones
@@ -1702,9 +1683,9 @@ public class menuPrincipal extends JFrame {
                           int selectedRow = table.getSelectedRow();
                         if (selectedRow != -1) {
                             // Llamar al método para eliminar el registro del archivo
-                            gestionTxt.eliminarRegistro(nombreArchivo, selectedRow);
+                            gestionTxt.manejarRegistro (table, nombreArchivo, selectedRow);
                             // Eliminar la fila de la tabla
-                            ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+                            //((DefaultTableModel) table.getModel()).removeRow(selectedRow);
                         }
                         break;
                     case "Buscar":

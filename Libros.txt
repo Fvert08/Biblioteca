@@ -1,2 +1,3 @@
-1,El coronel sisisis,isisis o no,2023,sisisisisisiooosisisi,Gabriel,Habilitado,Españolo,1,Ficcion dramatica
-2,La mini mamada,1,1,1,Gabriel,Habilitado,Fofidays,1,Ficcion
+2,Libro2,2023,2001,Normamama,Gabriel,Deshabilitado,Ingles,2,Ficcion
+3,Libro4,2020,2001,Normalsisisi,Gabriel,Deshabilitado,Checo,2,Ficcion
+4,Libro 5,2000,1999,Norma,Gabriel,Habilitado,Español,1,Ficcion
