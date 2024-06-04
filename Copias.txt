@@ -2,6 +2,6 @@
 2,en biblioteca,Gabriel,Tesis
 3,en biblioteca,LirboCopia,Libros
 4,en biblioteca,Gabriel,Tesis
-5,en biblioteca,Articulocopia,Articulo
+5,en biblioteca,Articulocopia,Articulos
 6,en biblioteca,Lirbo100,Libros
 7,en biblioteca,Gabriel,Tesis

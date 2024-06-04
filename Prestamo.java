@@ -76,4 +76,7 @@ public class Prestamo {
     public void setFechaEntrega(String fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
+    public String toString() {
+        return id + "," + Tipo + "," + idLibro + "," + idLector + "," + diasPrestamo + "," + fechaPrestamo + "," + fechaEntrega;
+    }
 }
