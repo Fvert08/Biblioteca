@@ -1665,15 +1665,10 @@ public class menuPrincipal extends JFrame {
         
         
         // Tabla para mostrar resultados
-    String[] columnNames = {"Columna 1", "Columna 2", "Columna 3", "Columna 4", "Columna 5"};
+    String[] columnNames = {};
     Object[][] data = {
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"}
+        {}
     };
-
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
     gbc.gridx = 0;
