@@ -301,9 +301,6 @@ public class menuPrincipal extends JFrame {
         JLabel labelIdioma = new JLabel("Idioma:");
         JTextField textIdioma = new JTextField(20);
 
-        JLabel labelCopias = new JLabel("Copias:");
-        JTextField textCopias = new JTextField(20);
-
         JLabel labelCategoria = new JLabel("Categoria:");
         JComboBox<String> comboCategoria = new JComboBox<>();
         gestionTxt.cargarListaDesdeArchivo(comboCategoria, "Categorias.txt", 1);
@@ -376,24 +373,16 @@ public class menuPrincipal extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 9;
-        panel.add(labelCopias, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 9;
-        panel.add(textCopias, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 10;
         panel.add(labelCategoria, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 10;
+        gbc.gridy = 9;
         panel.add(comboCategoria, gbc);
 
         // Botón para guardar
         JButton buttonGuardar = new JButton("Guardar");
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 10;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonGuardar, gbc);
@@ -401,7 +390,7 @@ public class menuPrincipal extends JFrame {
         // Botón para volver
         JButton buttonVolver = new JButton("Volver");
         gbc.gridx = 0;
-        gbc.gridy = 12;
+        gbc.gridy = 11;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonVolver, gbc);
@@ -425,9 +414,8 @@ public class menuPrincipal extends JFrame {
                         String autor = (String)comboAutor.getSelectedItem();
                         String estado = (String)comboEstado.getSelectedItem();
                         String idioma = textIdioma.getText();
-                        int copias = Integer.parseInt(textCopias.getText());
                         String categoria =  (String) comboCategoria.getSelectedItem();
-                        Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, copias, categoria);
+                        Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, categoria);
                         gestionTxt.escribirObjeto(libro, "Libros.txt");
                             break;
                         case "Volver":

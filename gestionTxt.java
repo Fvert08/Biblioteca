@@ -39,7 +39,7 @@ public class gestionTxt {
                 columnNames = new String[]{"ID", "Nombre", "Telefono", "Direccion", "Estado", "Libros prestados"};
                 break;
             case "Libros.txt":
-                columnNames = new String[]{"ID", "Titulo", "Edición", "Año publicación", "Editorial", "Autor", "Estado", "Idioma", "Copias", "Categoria"};
+                columnNames = new String[]{"ID", "Titulo", "Edición", "Año publicación", "Editorial", "Autor", "Estado", "Idioma", "Categoria"};
                 break;
             case "Tesis.txt":
                 columnNames = new String[]{"ID", "Nombre autor", "Institución academica", "Fecha investigación", "Fecha presentación", "Campo estudio", "Estado", "Páginas"};
