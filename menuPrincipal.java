@@ -1222,11 +1222,39 @@ public class menuPrincipal extends JFrame {
         JLabel labelEstado = new JLabel("Estado:");
         JComboBox<String> comboEstado = new JComboBox<>(new String[] {"en biblioteca", "prestada", "con retraso", "en reparación"});
 
-        JLabel labelIDOrigen = new JLabel("ID Origen:");
-        JComboBox<String> comboIDOrigen = new JComboBox<>(new String[] {"idLibro1", "idLibro2"});
-
         JLabel labelTipo = new JLabel("Tipo:");
-        JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Libro", "Tesis", "Articulo científico"});
+        JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Tesis", "Libro", "Articulo científico"});
+
+        JLabel labelIDOrigen = new JLabel("ID Origen:");
+        JComboBox<String> comboIDOrigen = new JComboBox<>();
+
+        // Agregar un ActionListener al JComboBox comboTipo
+        comboTipo.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Limpiar el JComboBox comboIDOrigen
+            comboIDOrigen.removeAllItems();
+
+            // Obtener el ítem seleccionado en comboTipo
+            String seleccionado = (String) comboTipo.getSelectedItem();
+
+            // Actualizar el contenido de comboIDOrigen según la opción seleccionada en comboTipo
+            switch (seleccionado) {
+                case "Tesis":
+                    gestionTxt.cargarListaDesdeArchivo(comboIDOrigen, "Tesis.txt", 0);
+                    break;
+                case "Articulo científico":
+                    gestionTxt.cargarListaDesdeArchivo(comboIDOrigen, "Articulos.txt", 0);
+                    break;
+                case "Libro":
+                    gestionTxt.cargarListaDesdeArchivo(comboIDOrigen, "Libros.txt", 1);
+                    break;
+                default:
+                    System.out.println("Tipo de recurso no reconocido");
+                    break;
+            }
+        }
+    });
 
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -1247,19 +1275,19 @@ public class menuPrincipal extends JFrame {
         panel.add(comboEstado, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         panel.add(labelIDOrigen, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         panel.add(comboIDOrigen, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(labelTipo, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         panel.add(comboTipo, gbc);
 
         // Botón para guardar
@@ -1289,7 +1317,12 @@ public class menuPrincipal extends JFrame {
                     // Usar switch para manejar diferentes botones
                     switch (buttonText) {
                         case "Guardar":
-                            System.out.println("Guardar datos de la copia");
+                            int id = Integer.parseInt(textID.getText());
+                            String estado = (String)comboEstado.getSelectedItem();
+                            String idOrigen = (String)comboIDOrigen.getSelectedItem();
+                            String tipo = (String)comboTipo.getSelectedItem();
+                            Copia copia = new Copia(id, estado, idOrigen, tipo) ;
+                            gestionTxt.escribirObjeto(copia, "Copias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
