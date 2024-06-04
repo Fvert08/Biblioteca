@@ -301,9 +301,6 @@ public class menuPrincipal extends JFrame {
         JLabel labelIdioma = new JLabel("Idioma:");
         JTextField textIdioma = new JTextField(20);
 
-        JLabel labelCopias = new JLabel("Copias:");
-        JTextField textCopias = new JTextField(20);
-
         JLabel labelCategoria = new JLabel("Categoria:");
         JComboBox<String> comboCategoria = new JComboBox<>();
         gestionTxt.cargarListaDesdeArchivo(comboCategoria, "Categorias.txt", 1);
@@ -376,24 +373,16 @@ public class menuPrincipal extends JFrame {
 
         gbc.gridx = 0;
         gbc.gridy = 9;
-        panel.add(labelCopias, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 9;
-        panel.add(textCopias, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 10;
         panel.add(labelCategoria, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 10;
+        gbc.gridy = 9;
         panel.add(comboCategoria, gbc);
 
         // Botón para guardar
         JButton buttonGuardar = new JButton("Guardar");
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 10;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonGuardar, gbc);
@@ -401,7 +390,7 @@ public class menuPrincipal extends JFrame {
         // Botón para volver
         JButton buttonVolver = new JButton("Volver");
         gbc.gridx = 0;
-        gbc.gridy = 12;
+        gbc.gridy = 11;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(buttonVolver, gbc);
@@ -425,10 +414,13 @@ public class menuPrincipal extends JFrame {
                         String autor = (String)comboAutor.getSelectedItem();
                         String estado = (String)comboEstado.getSelectedItem();
                         String idioma = textIdioma.getText();
-                        int copias = Integer.parseInt(textCopias.getText());
                         String categoria =  (String) comboCategoria.getSelectedItem();
-                        Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, copias, categoria);
+                        Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, categoria);
                         gestionTxt.escribirObjeto(libro, "Libros.txt");
+                        // Se crea la copia del libro automaticamente
+                        int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                        Copia copia = new Copia(IDcopia, "en biblioteca", titulo, "Libro");
+                        gestionTxt.escribirObjeto(copia, "Copias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -854,6 +846,10 @@ public class menuPrincipal extends JFrame {
                         int paginas = Integer.parseInt(textPaginas.getText());
                         Tesis tesis= new Tesis(nombreAutores, institucionAcademica, fechaInvestigacion, fechaPresentacion, campoEstudio, estado, paginas);
                         gestionTxt.escribirObjeto(tesis, "Tesis.txt");
+                        // Se crea la copia del libro automaticamente
+                        int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                        Copia copia = new Copia(IDcopia, "en biblioteca", nombreAutores, "Tesis");
+                        gestionTxt.escribirObjeto(copia, "Copias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1025,6 +1021,10 @@ public class menuPrincipal extends JFrame {
                             String estado = (String)comboEstado.getSelectedItem();
                             ArticuloCientifico articuloCientifico= new ArticuloCientifico(titulo, doi, editor, fechaPublicacion, periodicidad, numeroVolumen, campoInteres, estado);
                             gestionTxt.escribirObjeto(articuloCientifico, "Articulos.txt");
+                            // Se crea la copia del libro automaticamente
+                            int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                            Copia copia = new Copia(IDcopia, "en biblioteca", titulo, "Articulo");
+                            gestionTxt.escribirObjeto(copia, "Copias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
@@ -1254,7 +1254,7 @@ public class menuPrincipal extends JFrame {
                     break;
             }
         }
-    });
+        });
 
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -1371,15 +1371,36 @@ public class menuPrincipal extends JFrame {
     textID.setEditable(false);  // No editable
 
     JLabel labelTipo = new JLabel("Tipo:");
-    JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Libro", "Tesis", "Articulo científico"});
+    JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Libros", "Tesis", "Articulos"});
 
     JLabel labelIDEscrito = new JLabel("ID Escrito:");
     JComboBox<String> comboIDEscrito = new JComboBox<>();
+<<<<<<< HEAD
     gestionTxt.cargarListaDesdeArchivo(comboIDEscrito, "Copias.txt", 2);
 
     JLabel labelIDLector = new JLabel("ID Lector:");
     JComboBox<String> comboIDLector = new JComboBox<>();
     gestionTxt.cargarListaDesdeArchivo(comboIDLector, "Lectores.txt", 1);
+=======
+    String comboIDEscritoText =  ((String) comboTipo.getSelectedItem());
+    gestionTxt.cargarListaDesdeArchivoCopias(comboIDEscrito,comboIDEscritoText , 2);
+        // Agregar un ActionListener al JComboBox comboTipo
+        comboTipo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Limpiar el JComboBox comboIDOrigen
+                comboIDEscrito.removeAllItems();
+                // Obtener el ítem seleccionado en comboTipo
+                String comboIDEscritoText =  ((String) comboTipo.getSelectedItem());
+                gestionTxt.cargarListaDesdeArchivoCopias(comboIDEscrito,comboIDEscritoText , 2);
+            }
+            });
+    JLabel labelIDLector = new JLabel("ID Lector:");
+    JComboBox<String> comboIDLector = new JComboBox<>();
+
+    gestionTxt.cargarListaDesdeArchivo(comboIDLector, "Lectores.txt", 1);
+
+>>>>>>> origin/Arreglar_Copias_Libros
     JLabel labelDiasPrestamo = new JLabel("Días Préstamo:");
     JTextField textDiasPrestamo = new JTextField(20);
 
@@ -1666,15 +1687,10 @@ public class menuPrincipal extends JFrame {
         
         
         // Tabla para mostrar resultados
-    String[] columnNames = {"Columna 1", "Columna 2", "Columna 3", "Columna 4", "Columna 5"};
+    String[] columnNames = {};
     Object[][] data = {
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"},
-        {"Dato 1", "Dato 2", "Dato 3", "Dato 4", "Dato 5"}
+        {}
     };
-
     JTable table = new JTable(data, columnNames);
     JScrollPane scrollPane = new JScrollPane(table);
     gbc.gridx = 0;
