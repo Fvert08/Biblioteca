@@ -417,6 +417,10 @@ public class menuPrincipal extends JFrame {
                         String categoria =  (String) comboCategoria.getSelectedItem();
                         Libro libro = new Libro(id, titulo, edicion, aniopublicion, editorial, autor, estado, idioma, categoria);
                         gestionTxt.escribirObjeto(libro, "Libros.txt");
+                        // Se crea la copia del libro automaticamente
+                        int IDcopia = gestionTxt.contarRegistros("Copias.txt"); 
+                        Copia copia = new Copia(IDcopia, "en biblioteca", titulo, "Libro");
+                        gestionTxt.escribirObjeto(copia, "Copias.txt");
                             break;
                         case "Volver":
                             mostrarPantallaRegistro();
