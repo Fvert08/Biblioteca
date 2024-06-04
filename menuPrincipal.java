@@ -1254,7 +1254,7 @@ public class menuPrincipal extends JFrame {
                     break;
             }
         }
-    });
+        });
 
         // Añadir componentes al panel
         gbc.gridwidth = 1;
@@ -1371,13 +1371,27 @@ public class menuPrincipal extends JFrame {
     textID.setEditable(false);  // No editable
 
     JLabel labelTipo = new JLabel("Tipo:");
-    JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Libro", "Tesis", "Articulo científico"});
+    JComboBox<String> comboTipo = new JComboBox<>(new String[] {"Libros", "Tesis", "Articulos"});
 
     JLabel labelIDEscrito = new JLabel("ID Escrito:");
-    JComboBox<String> comboIDEscrito = new JComboBox<>(new String[] {"idLibro1", "idLibro2"});
-
+    JComboBox<String> comboIDEscrito = new JComboBox<>();
+    String comboIDEscritoText =  ((String) comboTipo.getSelectedItem());
+    gestionTxt.cargarListaDesdeArchivoCopias(comboIDEscrito,comboIDEscritoText , 2);
+        // Agregar un ActionListener al JComboBox comboTipo
+        comboTipo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Limpiar el JComboBox comboIDOrigen
+                comboIDEscrito.removeAllItems();
+                // Obtener el ítem seleccionado en comboTipo
+                String comboIDEscritoText =  ((String) comboTipo.getSelectedItem());
+                gestionTxt.cargarListaDesdeArchivoCopias(comboIDEscrito,comboIDEscritoText , 2);
+            }
+            });
     JLabel labelIDLector = new JLabel("ID Lector:");
-    JComboBox<String> comboIDLector = new JComboBox<>(new String[] {"idLector1", "idLector2"});
+    JComboBox<String> comboIDLector = new JComboBox<>();
+
+    gestionTxt.cargarListaDesdeArchivo(comboIDLector, "Lectores.txt", 1);
 
     JLabel labelDiasPrestamo = new JLabel("Días Préstamo:");
     JTextField textDiasPrestamo = new JTextField(20);

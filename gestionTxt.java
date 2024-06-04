@@ -132,6 +132,23 @@ public class gestionTxt {
         }
     }
     // Método para manejar el registro del archivo basado en el índice de la fila
+    public static void cargarListaDesdeArchivoCopias(JComboBox<String> comboBox, String nombreArchivo, int posicion) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Copias.txt"))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] partes = linea.split(",");
+                if (partes.length > posicion) {
+                    
+                    String nombreAutor = partes[posicion];
+                    if (nombreArchivo.equals( partes[3])) {
+                        comboBox.addItem(nombreAutor);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void manejarRegistro(JTable tabla, String archivo, int indiceAEliminar) {
         boolean esLibrosOLectores = archivo.equals("Libros.txt") || archivo.equals("Lectores.txt");
     
@@ -183,11 +200,6 @@ public class gestionTxt {
             model.removeRow(indiceAEliminar);
         }
     }
-    
-    
-    
-    
-    
    
     public static void editarRegistro(int indiceTabla, JTable tabla, String archivo) {
         // Leer el contenido del archivo y almacenarlo en una lista
