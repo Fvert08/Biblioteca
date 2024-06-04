@@ -151,8 +151,12 @@ public class gestionTxt {
                             break;
                         }
                     }
+                    registros.add(linea);
+                } else if (!esLibrosOLectores && currentIndex != indiceAEliminar) {
+                    registros.add(linea);
+                } else if (esLibrosOLectores) {
+                    registros.add(linea);
                 }
-                registros.add(linea);
                 currentIndex++;
             }
         } catch (IOException e) {
@@ -173,9 +177,17 @@ public class gestionTxt {
         if (esLibrosOLectores) {
             DefaultTableModel model = (DefaultTableModel) tabla.getModel();
             int estadoColumnIndex = model.findColumn("Estado");
-            model.setValueAt("Deshabilitado", indiceAEliminar, estadoColumnIndex);
+            model.setValueAt("Inhabilitado", indiceAEliminar, estadoColumnIndex);
+        } else {
+            // Eliminar la fila de la tabla
+            DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+            model.removeRow(indiceAEliminar);
         }
     }
+    
+    
+    
+    
     
    
     public static void editarRegistro(int indiceTabla, JTable tabla, String archivo) {
